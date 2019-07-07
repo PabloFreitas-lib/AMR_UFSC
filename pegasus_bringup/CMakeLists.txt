@@ -1,20 +1,25 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(chefbot_navig_cpp)
+project(pegasus_bringup)
 add_definitions(--std=c++11)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
+  depthimage_to_laserscan
   geometry_msgs
   move_base_msgs
   nav_msgs
+  robot_pose_ekf
+  robot_state_publisher
   roscpp
+  rospy
   std_msgs
   tf
 )
 
 ## System dependencies are found with CMake's conventions
-find_package(Boost REQUIRED COMPONENTS system)
+# find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -84,8 +89,8 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES chefbot_navig_cpp
-#  CATKIN_DEPENDS geometry_msgs move_base_msgs nav_msgs roscpp std_msgs tf
+#  LIBRARIES pegasus_bringup
+#  CATKIN_DEPENDS actionlib depthimage_to_laserscan geometry_msgs move_base_msgs nav_msgs openni_launch robot_pose_ekf robot_state_publisher roscpp rospy std_msgs tf
 #  DEPENDS system_lib
 )
 
@@ -97,30 +102,23 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
- ${Boost_INCLUDE_DIR} 
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a cpp library
-# add_library(chefbot_navig_cpp
-#   src/${PROJECT_NAME}/chefbot_navig_cpp.cpp
+# add_library(pegasus_bringup
+#   src/${PROJECT_NAME}/pegasus_bringup.cpp
 # )
 
 ## Declare a cpp executable
-add_executable(twist_to_motor src/twist_to_motor.cpp)
-add_executable(diff_tf src/diff_tf.cpp)
+add_executable(send_goal src/send_robot_goal.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(chefbot_navig_cpp_node chefbot_navig_cpp_generate_messages_cpp)
+# add_dependencies(pegasus_bringup_node pegasus_bringup_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(twist_to_motor
-   ${catkin_LIBRARIES}
-
- )
-
- target_link_libraries(diff_tf 
+ target_link_libraries(send_goal
    ${catkin_LIBRARIES}
  )
 
@@ -139,7 +137,7 @@ add_executable(diff_tf src/diff_tf.cpp)
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS chefbot_navig_cpp chefbot_navig_cpp_node
+# install(TARGETS pegasus_bringup pegasus_bringup_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -164,7 +162,7 @@ add_executable(diff_tf src/diff_tf.cpp)
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_chefbot_navig_cpp.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_pegasus_bringup.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

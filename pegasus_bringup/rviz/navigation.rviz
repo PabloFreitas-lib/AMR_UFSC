@@ -73,12 +73,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        chefbot_caster_back_link:
+        pegasus_caster_back_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        chefbot_caster_front_link:
+        pegasus_caster_front_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
