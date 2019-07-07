@@ -5,15 +5,11 @@
 
 <!-- ########################################################################################################################### -->
 	<arg name="simulation" default="$(optenv TURTLEBOT_SIMULATION false)"/>
-	<param name="/use_sim_time" value="$(arg simulation)"/>
 	<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find chefbot_description)/urdf/chefbot_base.xacro'" />
+	<arg name="scan_topic" default="scan"/>	<!-- Laserscan topic -->
+	<param name="/use_sim_time" value="$(arg simulation)"/>
 	<param name="robot_description" command="$(arg urdf_file)" />
 
-	<!-- Laserscan topic -->
-	<arg name="scan_topic" default="scan"/>
-
-	<!--rosparam param="base_width">0.8</rosparam-->
-	<!--rosparam param="ticks_meter">14865</rosparam-->
 
 	<!-- Para uma roda de 6 polegadas de diametro e 360 pulsos por volta e uma distancia de 45cm entre as rodas-->
 	<rosparam param="base_width">0.45</rosparam>
