@@ -123,7 +123,7 @@ if __name__=="__main__":
                 if (status == 14):
                     print msg
                 status = (status + 1) % 15
-            elif key == ' ' or key == 'k' :
+            elif key == 'k' :
                 x = 0
                 th = 0
                 control_speed = 0
@@ -140,9 +140,9 @@ if __name__=="__main__":
             target_turn = turn * th
 
             if target_speed > control_speed:
-                control_speed = min( target_speed, control_speed + 0.02 )
+                control_speed = min( target_speed, control_speed + 0.15 )
             elif target_speed < control_speed:
-                control_speed = max( target_speed, control_speed - 0.02 )
+                control_speed = max( target_speed, control_speed - 0.15 )
             else:
                 control_speed = target_speed
 
