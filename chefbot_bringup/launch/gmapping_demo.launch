@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <!-- https://github.com/ros-planning/navigation/issues/206 -->
-
+  <include file="$(find chefbot_bringup)/launch/lidar.launch"/>
   <include file="$(find chefbot_bringup)/launch/includes/gmapping.launch.xml"/>
   <include file="$(find chefbot_bringup)/launch/includes/move_base.launch.xml"/>
 
