@@ -4,36 +4,33 @@
 							<!-- Argumentos e parametros -->
 
 <!-- ########################################################################################################################### -->
-	<arg name="simulation" default="$(optenv TURTLEBOT_SIMULATION false)"/>
-	<param name="/use_sim_time" value="$(arg simulation)"/>
-	<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find chefbot_description)/urdf/chefbot_base.xacro'" /> 
-	<param name="robot_description" command="$(arg urdf_file)" />
-	
-	<!-- Laserscan topic -->
-	<arg name="scan_topic" default="scan"/>
+<arg name="simulation" default="false)"/>
+<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find chefbot_description)/urdf/chefbot_base.xacro'" />
+<arg name="scan_topic" default="scan"/> 	<!-- Laserscan topic -->
 
-	<!--rosparam param="base_width">0.8</rosparam-->
-	<!--rosparam param="ticks_meter">14865</rosparam-->
-	<rosparam param="base_width">0.3</rosparam>
-	<rosparam param="ticks_meter">10000</rosparam>
+<param name="/use_sim_time" value="$(arg simulation)"/>
+<param name="robot_description" command="$(arg urdf_file)" />
+<rosparam param="base_width">0.45</rosparam> <!-- odometry parametros -->
+<rosparam param="ticks_meter">752</rosparam> <!-- odometry parametros -->
+
 <!-- ########################################################################################################################### -->
 
 
 							<!-- Nos e pacotes -->
-							
-<!-- ########################################################################################################################### -->	
+
+<!-- ########################################################################################################################### -->
 
 	<!-- Wheel Enconders odometry -->
-	<node pkg="chefbot_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/> 
-	
+	<node pkg="chefbot_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/>
+
 	<!-- C ++ -->
 
 	<node pkg="chefbot_navig_cpp" type="twist_to_motor" name="twist_to_motor" output="screen"/>
-	<!--node pkg="chefbot_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/--> 
+	<!--node pkg="chefbot_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/-->
 
 	 <!-- Laser scan tf -->
 	<node name="base_to_laser_scan" pkg="tf" type="static_transform_publisher" args="0.07 0 0 0 0 0 1 /base_link /laser 40"/>
-	
+
 	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
 		<param name="publish_frequency" type="double" value="5.0" />
 	</node>
@@ -61,7 +58,7 @@
 
 	</node>
 
-	<!-- 
+	<!--
 	pid_velocity - takes messages on wheel_vtarget target velocities    for the wheels and monitors wheel for feedback
 	-->
 	<node name="rpid_velocity" pkg="chefbot_bringup" type="pid_velocity.py" output="screen">
@@ -81,7 +78,7 @@
 		<rosparam param="rolling_pts">5</rosparam>
 
 	</node>
-	
-<!-- ########################################################################################################################### -->	
+
+<!-- ########################################################################################################################### -->
 
 </launch>

@@ -7,21 +7,21 @@
 
 
 	<!-- Robot's part -->
-	
 
-  
+
+
 			<!-- Joint's -->
 
 	  		<!-- Base footprint -->
 	<joint name="base_joint" type="fixed">
 		<origin xyz="0 0 0.0102" rpy="0 0 0" />
 		<parent link="base_footprint"/>
-		<child link="base_link" /> 
+		<child link="base_link" />
 	</joint>
-	
+
 		  	<!-- Caster wheels -->
 
-	
+
 		  	<!-- Left wheels -->
 	<joint name="left_axle_joint" type="fixed">
 		<origin xyz="0 0.171475 0.0178" rpy="0 0 0"/>
@@ -29,30 +29,30 @@
 		<child link="left_axle_link"/>
 		<axis xyz="0 1 0"/>
 	</joint>
-	
+
 	<joint name="left_wheel_joint" type="fixed">
 		<origin xyz="0 0.01905 0" rpy="0 0 0"/>
 		<parent link="left_axle_link"/>
 		<child link="left_wheel_link"/>
 		<axis xyz="0 1 0"/>
 	</joint>
-	
+
 		  	<!-- Right wheels -->
-		  	
+
 	<joint name="right_axle_joint" type="fixed">
 		<origin xyz="0 -0.171475 0.0178" rpy="0 0 0"/>
 		<parent link="base_link"/>
 		<child link="right_axle_link"/>
 		<axis xyz="0 1 0"/>
 	</joint>
-	
+
 	<joint name="right_wheel_joint" type="fixed">
 		<origin xyz="0 -0.01905 0" rpy="0 0 0"/>
 		<parent link="right_axle_link"/>
 		<child link="right_wheel_link"/>
 		<axis xyz="0 1 0"/>
 	</joint>
-	
+
 		<!--Sensors -->
 
 
@@ -62,16 +62,16 @@
 		<parent link="base_link"/>
 		<child link="laser_link"/>
 	</joint>
-	
-    
+
+
 		<!-- Link's -->
-  	
+
   		<!-- Base footprint -->
-	<link name="base_footprint"/>	
-   
+	<link name="base_footprint"/>
+
      		<!-- Chassis -->
 	<link name='base_link'>
-	
+
 		<pose>0 0 0.1 0 0 0</pose>
 
 		<inertial>
@@ -96,7 +96,7 @@
 		<box size=".96 .665 .08"/>
 		</geometry>
 		</visual>
-	
+
 		  	<!-- Caster wheels -->
 		<collision name='caster_collision'>
 		<origin xyz="-0.3 -0.25 0" rpy=" 0 0 0"/>
@@ -145,18 +145,12 @@
 				<sphere radius="0.065"/>
 			</geometry>
 		</visual>
-	
+
 	</link>
-	
-	
-
-    
-
-	
 
 
 	  	<!-- Left wheels -->
-	  	
+
 	<link name="left_axle_link">
 		<inertial>
       		<origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
@@ -170,7 +164,7 @@
 		<visual>
       		<origin xyz="0.38 0.104 0" rpy="0 1.5707 1.5707"/>
 			<geometry>
-				<cylinder radius="0.077" length="0.05"/>	
+				<cylinder radius="0.077" length="0.05"/>
 			</geometry>
 			<material name ="light_grey" />
 		</visual>
@@ -182,9 +176,9 @@
 			</geometry>
 		</collision>
 	</link>
-	
+
 	<link name="left_wheel_link">
-	
+
 		<inertial>
 		<origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
 			<mass value="5" />
@@ -208,12 +202,12 @@
 				<cylinder radius="0.077" length="0.05"/>
 			</geometry>
 		</collision>
-	
+
 	</link>
-      
-	  
+
+
 	  	<!-- Right wheels -->
-		  	
+
 	<link name="right_axle_link">
 		<inertial>
       		<origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
@@ -227,7 +221,7 @@
 		<visual>
       		<origin xyz="0.38 -0.104 0" rpy="0 1.5707 1.5707"/>
 			<geometry>
-				<cylinder radius="0.077" length="0.05"/>	
+				<cylinder radius="0.077" length="0.05"/>
 			</geometry>
 			<material name ="light_grey" />
 		</visual>
@@ -235,7 +229,7 @@
 		<collision>
       		<origin xyz="0.38 -0.104 0" rpy="0 1.5707 1.5707"/>
 			<geometry>
-				<cylinder radius="0.077" length="0.05"/>	
+				<cylinder radius="0.077" length="0.05"/>
 			</geometry>
 		</collision>
 	</link>
@@ -253,7 +247,7 @@
 		<visual>
       		<origin xyz="0.38 -0.104 0" rpy="0 1.5707 1.5707"/>
 			<geometry>
-				<cylinder radius="0.077" length="0.05"/>	
+				<cylinder radius="0.077" length="0.05"/>
 			</geometry>
 			<material name ="black" />
 		</visual>
@@ -261,11 +255,11 @@
 		<collision>
       		<origin xyz="0.38 -0.104 0" rpy="0 1.5707 1.5707"/>
 			<geometry>
-				<cylinder radius="0.077" length="0.05"/>	
+				<cylinder radius="0.077" length="0.05"/>
 			</geometry>
 		</collision>
 	</link>
-	
+
 		<!-- Hokuyo Laser -->
 	<link name="laser_link">
 		<collision>
@@ -292,4 +286,3 @@
 
 
 </robot>
-
