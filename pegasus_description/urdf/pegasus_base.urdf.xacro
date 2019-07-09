@@ -1,25 +1,17 @@
 <?xml version="1.0" ?>
-<!--
-  This is not a standalone urdf for kobuki. It simply defines the 'kobuki' tag that can
-  be incorporated by other urdf files (e.g. turtlebot).
 
-  See kobuki_standalone.urdf.xacro for a standalone urdf to be tested with
-      kobuki_description/launch/view_model.launch
- -->
 <robot name="pegasus" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find pegasus_description)/urdf/common_properties.urdf.xacro"/>
-  <xacro:include filename="$(find pegasus_description)/urdf/pegasus_base_gazebo.urdf.xacro"/>
+  <!--xacro:include filename="$(find pegasus_description)/urdf/pegasus_base_gazebo.urdf.xacro"/-->
 
   <!-- pegasus -->
-  <xacro:macro name="kobuki">
+  <!--xacro:macro name="kobuki"-->
     <link name="base_footprint"/>
     <!--
        Base link is set at the bottom of the base mould.
        This is done to be compatible with the way base link
        was configured for turtlebot 1. Refer to
-
        https://github.com/turtlebot/turtlebot/issues/40
-
        To put the base link at the more oft used wheel
        axis, set the z-distance from the base_footprint
        to 0.352.
@@ -29,6 +21,7 @@
       <parent link="base_footprint"/>
       <child link="base_link" />
     </joint>
+
     <link name="base_link">
       <visual>
         <geometry>
@@ -121,14 +114,7 @@
                  izz="0.001" />
       </inertial>
     </link>
-
-
-
-
-
 <!--
-
-
 	  <link name="left_axle_link">
 	    <inertial>
 	      <origin xyz="0 0 0"/>
@@ -136,7 +122,6 @@
 	      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
 	        iyy="0.001" iyz="0.0" izz="0.001" />
 	    </inertial>
-
 	    <visual>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -144,7 +129,6 @@
 	      </geometry>
           <material name ="light_grey" />
 	    </visual>
-
 	    <collision>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -152,14 +136,12 @@
 	      </geometry>
 	    </collision>
 	  </link>
-
 	  <joint name="left_axle_joint" type="fixed">
 	    <origin xyz="0 0.171475 0.0178" rpy="0 0 0"/>
 	    <parent link="base_link"/>
 	    <child link="left_axle_link"/>
 	    <axis xyz="0 1 0"/>
 	  </joint>
-
 	  <link name="right_axle_link">
 	    <inertial>
 	      <origin xyz="0 0 0"/>
@@ -167,7 +149,6 @@
 	      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
 	        iyy="0.001" iyz="0.0" izz="0.001" />
 	    </inertial>
-
 	    <visual>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -175,7 +156,6 @@
 	      </geometry>
           <material name ="light_grey" />
 	    </visual>
-
 	    <collision>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -183,14 +163,12 @@
 	      </geometry>
 	    </collision>
 	  </link>
-
 	  <joint name="right_axle_joint" type="fixed">
 	    <origin xyz="0 -0.171475 0.0178" rpy="0 0 0"/>
 	    <parent link="base_link"/>
 	    <child link="right_axle_link"/>
 	    <axis xyz="0 1 0"/>
 	  </joint>
-
 	  <link name="left_wheel_link">
 	    <inertial>
 	      <origin xyz="0 0 0"/>
@@ -198,7 +176,6 @@
 	      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
 	        iyy="0.001" iyz="0.0" izz="0.001" />
 	    </inertial>
-
 	    <visual>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -206,7 +183,6 @@
 	      </geometry>
           <material name ="black" />
 	    </visual>
-
 	    <collision>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -214,7 +190,6 @@
 	      </geometry>
 	    </collision>
 	  </link>
-
         -->
 
 <!--	  <joint name="left_wheel_joint" type="fixed">
@@ -223,7 +198,6 @@
 	    <child link="left_wheel_link"/>
 	    <axis xyz="0 1 0"/>
 	  </joint>
-
 	  <link name="right_wheel_link">
 	    <inertial>
 	      <origin xyz="0 0 0"/>
@@ -231,7 +205,6 @@
 	      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
 	        iyy="0.001" iyz="0.0" izz="0.001" />
 	    </inertial>
-
 	    <visual>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -239,7 +212,6 @@
 	      </geometry>
           <material name ="black" />
 	    </visual>
-
 	    <collision>
 	      <origin xyz="0 0 0" rpy="0 1.5707 1.5707" />
 	      <geometry>
@@ -256,11 +228,7 @@
 	    <child link="right_wheel_link"/>
 	    <axis xyz="0 1 0"/>
 	  </joint>
-
-
 -->
-
-
     <joint name="caster_front_joint" type="fixed">
       <parent link="base_link"/>
       <child link="pegasus_caster_front_link"/>
@@ -366,7 +334,7 @@
     </link>
 
     <!-- Kobuki Gazebo simulation details -->
-    <kobuki_sim/>
+    <!--kobuki_sim/-->
 
-  </xacro:macro>
+  <!--/xacro:macro-->
 </robot>
