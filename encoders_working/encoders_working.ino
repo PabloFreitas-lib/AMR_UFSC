@@ -309,7 +309,7 @@ void Setup_MPU6050_DMP()
 //do_Left_Encoder() Definitions
 void do_Left_Encoder()
 {
-  (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks++ : Left_Encoder_Ticks--;
+  (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks-- : Left_Encoder_Ticks++;
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -317,7 +317,7 @@ void do_Left_Encoder()
 
 void do_Right_Encoder()
 {
-  (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks++ : Right_Encoder_Ticks--;
+  (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks-- : Right_Encoder_Ticks++;
 }
 
 //Will update both encoder value through serial port
