@@ -419,7 +419,8 @@ void Set_Speed()
 //Reset function
 void Reset()
 {
-
+  Left_Encoder_Ticks = 0;
+  Right_Encoder_Ticks = 0;
   digitalWrite(GREEN_LED,HIGH);
   delay(1000);
   digitalWrite(RESET_PIN,HIGH);
