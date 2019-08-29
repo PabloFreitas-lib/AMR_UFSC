@@ -98,7 +98,7 @@ void dmpDataReady() {
 
 
 //PWM 1 pin number
-#define PWM_1 PA_4
+#define PWM_1 PC_4 // PC_5 nao funcionou, evitar essa porta
 
 
 //Right Motor
@@ -106,7 +106,7 @@ void dmpDataReady() {
 #define B_1 PA_5
 
 //PWM 2 pin number
-#define PWM_2 PA_6
+#define PWM_2 PC_6
 
 //HIGH ativa a ponte H
 //LOW desativa
