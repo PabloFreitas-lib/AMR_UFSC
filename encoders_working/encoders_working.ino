@@ -143,8 +143,8 @@ float motor_right_speed = 0;
 
 // Left encoder 5V( preto GND - Vermelho VCC)
 
-#define Left_Encoder_PinA PD_7 // branco Antiga PD_7
-#define Left_Encoder_PinB PD_6 // verde  Antiga PD_6
+#define Left_Encoder_PinA PD_6 // branco Antiga PD_7
+#define Left_Encoder_PinB PC_7 // verde  Antiga PD_6
 
 volatile long Left_Encoder_Ticks = 0;
 
