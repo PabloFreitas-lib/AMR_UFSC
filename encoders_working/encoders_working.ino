@@ -1,5 +1,4 @@
-
- /*
+/*
 #  Chefbot_ROS_Interface.ino
 #
 #  Copyright 2015 Lentin Joseph <qboticslabs@gmail.com>
@@ -89,7 +88,62 @@ void dmpDataReady() {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
+unsigned const int limite = 255;
 
+                      //Codigo novo adaptado para novo esquematico
+                      
+                      //definicoes
+                      
+// Motor DIREITA - LevelUP da ESQUERDA
+
+int PWM_D1 = PC_5; //PWM1 - PH4
+int PWM_D2 = PC_6; //PWM2 - PH3
+
+int Direita_d = PA_3; // Sinal de 5v para as duas entradas encoder - PH1
+
+
+
+// Motor ESQUERDA - LevelUP do Meio
+
+int PWM_E1 = PB_0; //PWM1 - PH1
+int PWM_E2 = PB_1; //PWM2 - PH2
+
+int Esquerda_d = PE_4; //sinal de 5v para as duas entradas encoder - PH3
+
+
+
+
+//Encoder DIREITA - levelUP DIREITA
+/*
+int PF4 = PF_4; // - PH1
+int PD7 = PD_7; // - PH2
+
+//Encoder ESQUERDA
+
+int PD6 = PD_6; // - PH4
+int PC7 = PC_7; // - PH3*/
+
+///////////////////////////////////////////////////////////////
+//Encoder pins definition
+
+// Left encoder 5V( preto GND - Vermelho VCC)
+
+#define Left_Encoder_PinA PD_6 // branco
+#define Left_Encoder_PinB PC_7 // verde
+
+volatile long Left_Encoder_Ticks = 0;
+
+// Right encoder 5V( preto GND - Vermelho VCC)
+
+#define Right_Encoder_PinA PF_4 // branco
+#define Right_Encoder_PinB PD_7 // verde
+
+volatile long Right_Encoder_Ticks = 0;
+
+              // fim do codigo novo
+
+
+/*
 /////////////////////////////////////////////////////////////////
 //Motor Pin definition
 //Left Motor pins
@@ -98,7 +152,7 @@ void dmpDataReady() {
 
 
 //PWM 1 pin number
-#define PWM_1 PA_4
+#define PWM_1 PC_4 // PC_5 nao funcionou, evitar essa porta
 
 
 //Right Motor
@@ -106,8 +160,8 @@ void dmpDataReady() {
 #define B_1 PA_5
 
 //PWM 2 pin number
-#define PWM_2 PA_6
-
+#define PWM_2 PC_6
+*/
 //HIGH ativa a ponte H
 //LOW desativa
 //#define STOP_MOTOR_R PB_0
@@ -137,25 +191,25 @@ float SecondsSinceLastUpdate = 0;
 float motor_left_speed = 0;
 float motor_right_speed = 0;
 /////////////////////////////////////////////////////////////////
-
+/*
 ///////////////////////////////////////////////////////////////
 //Encoder pins definition
 
 // Left encoder 5V( preto GND - Vermelho VCC)
 
-#define Left_Encoder_PinA PD_7 // branco
-#define Left_Encoder_PinB PD_6 // verde
+#define Left_Encoder_PinA PD_6 // branco Antiga PD_7
+#define Left_Encoder_PinB PC_7 // verde  Antiga PD_6
 
 volatile long Left_Encoder_Ticks = 0;
 
 // Right encoder 5V( preto GND - Vermelho VCC)
 
-#define Right_Encoder_PinA PE_2 // branco
-#define Right_Encoder_PinB PE_3 // verde
+#define Right_Encoder_PinA PF_4 // branco Antiga PE_2
+#define Right_Encoder_PinB PD_7 // verde  Antiga PE_3
 
 volatile long Right_Encoder_Ticks = 0;
 
-
+*/
 //SetupEncoders() Definition
 
 void SetupEncoders()
@@ -213,12 +267,16 @@ void SetupMotors()
 {
 
  //Left motor
- pinMode(A_1,OUTPUT);
- pinMode(PWM_1,OUTPUT);
+ pinMode(Esquerda_d,OUTPUT);
+ pinMode(PWM_E1,OUTPUT);
+ pinMode(PWM_E2,OUTPUT);
+
 
  //Right Motor
- pinMode(B_1,OUTPUT);
- pinMode(PWM_2,OUTPUT);
+ pinMode(Direita_d,OUTPUT);
+ pinMode(PWM_D1,OUTPUT);
+ pinMode(PWM_D2,OUTPUT);
+
 
  //PIN RESET MOTOR
  //pinMode(STOP_MOTOR_R,OUTPUT);
@@ -294,7 +352,6 @@ void Setup_MPU6050_DMP()
 
    }
    /*else{
-
      ;
      }*/
 
@@ -309,7 +366,7 @@ void Setup_MPU6050_DMP()
 //do_Left_Encoder() Definitions
 void do_Left_Encoder()
 {
-  (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks++ : Left_Encoder_Ticks--;
+  (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks-- : Left_Encoder_Ticks++;
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -419,7 +476,14 @@ void Set_Speed()
 //Reset function
 void Reset()
 {
+  //Zera os encoders
+  Left_Encoder_Ticks = 0;
+  Right_Encoder_Ticks = 0;
 
+  //Para o Motor
+  motor_left_speed = 0;
+  motor_right_speed = 0;
+  
   digitalWrite(GREEN_LED,HIGH);
   delay(1000);
   digitalWrite(RESET_PIN,HIGH);
@@ -482,7 +546,7 @@ void Update_Time()
   MicrosecsSinceLastUpdate = CurrentMicrosecs - LastUpdateMicrosecs;
   if (MicrosecsSinceLastUpdate < 0)
     {
-	MicrosecsSinceLastUpdate = INT_MIN - LastUpdateMicrosecs + CurrentMicrosecs;
+  MicrosecsSinceLastUpdate = INT_MIN - LastUpdateMicrosecs + CurrentMicrosecs;
 
     }
   LastUpdateMicrosecs = CurrentMicrosecs;
@@ -520,25 +584,31 @@ void moveRightMotor(float rightServoValue)
 {
   if (rightServoValue>0)
   {
-    //digitalWrite(STOP_MOTOR_R,HIGH);
-    digitalWrite(A_1,HIGH);
-    analogWrite(PWM_1,rightServoValue);
+    digitalWrite(Direita_d,HIGH);
+    if(rightServoValue > limite)
+    {
+      rightServoValue = limite;
+    }
+    analogWrite(PWM_D1,rightServoValue);
+    analogWrite(PWM_D2,0);
   }
   else if(rightServoValue<0)
   {
-   //digitalWrite(STOP_MOTOR_R,HIGH);
-   digitalWrite(A_1,LOW);
-
-   analogWrite(PWM_1,abs(rightServoValue));
-
+   digitalWrite(Direita_d,HIGH);
+   if(abs(rightServoValue) > limite)
+    {
+      rightServoValue = limite;
+    }
+   analogWrite(PWM_D2,abs(rightServoValue));
+   analogWrite(PWM_D1,0);
   }
 
   else if(rightServoValue == 0)
   {
     //reset PIN , mas esse desliga o TIVA
-    //digitalWrite(STOP_MOTOR_R,LOW);
-    analogWrite(PWM_1, 0);
-    analogWrite(PWM_2, 0);
+    digitalWrite(Direita_d,LOW);
+    analogWrite(PWM_D1, 0);
+    analogWrite(PWM_D2, 0);
   }
 
 
@@ -549,22 +619,32 @@ void moveLeftMotor(float leftServoValue)
 {
    if (leftServoValue > 0)
   {
-    //digitalWrite(STOP_MOTOR_L,HIGH);
-    digitalWrite(B_1,HIGH);
-    analogWrite(PWM_2,leftServoValue);
+    digitalWrite(Esquerda_d,HIGH);
+    if(leftServoValue > limite)
+    {
+      leftServoValue = limite;
+    }
+    analogWrite(PWM_E2,leftServoValue);
+    analogWrite(PWM_E1,0);
+
   }
   else if(leftServoValue < 0)
   {
-    //digitalWrite(STOP_MOTOR_L,HIGH);
-    digitalWrite(B_1,LOW);
-    analogWrite(PWM_2,abs(leftServoValue));
+    digitalWrite(Esquerda_d,HIGH);
+    if(abs(leftServoValue) > limite)
+    {
+      leftServoValue = limite;
+    }
+    analogWrite(PWM_E1,abs(leftServoValue));
+    analogWrite(PWM_E2,0);
+
   }
   else if(leftServoValue == 0)
   {
    //reset PIN , mas esse desliga o TIVA
-     //digitalWrite(STOP_MOTOR_L,LOW);
-     analogWrite(PWM_1, 0);
-     analogWrite(PWM_2, 0);
+    digitalWrite(Esquerda_d,LOW);
+    analogWrite(PWM_E1,0);
+    analogWrite(PWM_E2,0);
    }
 
 
