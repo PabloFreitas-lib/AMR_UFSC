@@ -88,12 +88,12 @@ void dmpDataReady() {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned const int limite = 255;
+unsigned const int limite = 155;
 
                       //Codigo novo adaptado para novo esquematico
-                      
+
                       //definicoes
-                      
+
 // Motor DIREITA - LevelUP da ESQUERDA
 
 int PWM_D1 = PC_5; //PWM1 - PH4
@@ -483,7 +483,7 @@ void Reset()
   //Para o Motor
   motor_left_speed = 0;
   motor_right_speed = 0;
-  
+
   digitalWrite(GREEN_LED,HIGH);
   delay(1000);
   digitalWrite(RESET_PIN,HIGH);
