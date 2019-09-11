@@ -36,8 +36,15 @@
 	<!--node name="base_to_laser_scan" pkg="tf" type="static_transform_publisher" args="0.07 0 0 0 0 0 1 /base_link /laser 40"/-->
 
 	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-		<param name="publish_frequency" type="double" value="5.0" />
+		<!--param name="publish_frequency" type="double" value="5.0" /-->
 	</node>
+
+	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+		<jointName>cast2bracket_right, cast2bracket_left, right_caster_joint, left_caster_joint </jointName>
+		<updateRate>100</updateRate>
+	</node>
+
+
 
 	<node name="launchpad_node" pkg="pegasus_bringup" type="launchpad_node.py">
 		<rosparam file="$(find pegasus_bringup)/param/board_config.yaml" command="load" />
