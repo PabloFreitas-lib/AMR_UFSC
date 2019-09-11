@@ -40,8 +40,8 @@
 	</node>
 
 	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
-		<jointName>cast2bracket_right, cast2bracket_left, right_caster_joint, left_caster_joint </jointName>
-		<updateRate>100</updateRate>
+		<!--jointName>cast2bracket_right, cast2bracket_left, right_caster_joint, left_caster_joint </jointName>
+		<updateRate>100</updateRate-->
 	</node>
 
 

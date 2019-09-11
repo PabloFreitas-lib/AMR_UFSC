@@ -85,15 +85,15 @@ Odometry_calc::Odometry_calc()
 	init_variables();
 
 	ROS_INFO("Started odometry computing node");
-     
+
      //Subscribing left and right wheel enconder values
 	l_wheel_sub = n.subscribe("/lwheel",10, &Odometry_calc::leftencoderCb, this);
-	
+
 	r_wheel_sub = n.subscribe("/rwheel",10, &Odometry_calc::rightencoderCb, this);
 
      // creating a publisher for odom
-  	odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);   
-  	
+  	odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+
 
 
 	//Retrieving parameters of this node
@@ -121,15 +121,15 @@ void Odometry_calc::init_variables()
 	ticks_meter = 20; //50
 
 	base_width = 0.3;
-	
-	
+
+
 
 	encoder_low_wrap = ((encoder_max - encoder_min) * 0.3) + encoder_min ;
 	encoder_high_wrap = ((encoder_max - encoder_min) * 0.7) + encoder_min ;
 
 	t_delta = ros::Duration(1.0 / rate);
 	t_next = ros::Time::now() + t_delta;
-	
+
 	then = ros::Time::now();
 
 
@@ -138,9 +138,9 @@ void Odometry_calc::init_variables()
 
 	dx = 0;
 	dr = 0;
- 
+
 	x_final = 0;y_final=0;theta_final=0;
-	
+
 	current_time = ros::Time::now();
   	last_time = ros::Time::now();
 
@@ -148,38 +148,38 @@ void Odometry_calc::init_variables()
 void Odometry_calc::get_node_params()
 {
 
-	
+
         if(n.getParam("rate", rate))
         {
-	 
-		ROS_INFO_STREAM("Rate from param" << rate);	       
+
+		ROS_INFO_STREAM("Rate from param" << rate);
 	   }
 
         if(n.getParam("encoder_min", encoder_min))
         {
-	 
-		ROS_INFO_STREAM("Encoder min from param" << encoder_min);	       
+
+		ROS_INFO_STREAM("Encoder min from param" << encoder_min);
 	   }
 
 
         if(n.getParam("encoder_max", encoder_max))
         {
-	 
-		ROS_INFO_STREAM("Encoder max from param" << encoder_max);	       
+
+		ROS_INFO_STREAM("Encoder max from param" << encoder_max);
 	   }
 
 
         if(n.getParam("wheel_low_wrap", encoder_low_wrap))
         {
-	 
-		ROS_INFO_STREAM("wheel_low_wrap from param" << encoder_low_wrap);	       
+
+		ROS_INFO_STREAM("wheel_low_wrap from param" << encoder_low_wrap);
 	   }
 
 
         if(n.getParam("wheel_high_wrap", encoder_high_wrap))
         {
-	 
-		ROS_INFO_STREAM("wheel_high_wrap from param" << encoder_high_wrap);	       
+
+		ROS_INFO_STREAM("wheel_high_wrap from param" << encoder_high_wrap);
 	   }
 
 
@@ -187,15 +187,15 @@ void Odometry_calc::get_node_params()
 
         if(n.getParam("ticks_meter", ticks_meter))
         {
-	 
-		ROS_INFO_STREAM("Ticks meter" << ticks_meter);	       
+
+		ROS_INFO_STREAM("Ticks meter" << ticks_meter);
 	   }
 
 
         if(n.getParam("base_width", base_width ))
         {
-	 
-		ROS_INFO_STREAM("Base Width" << base_width );	       
+
+		ROS_INFO_STREAM("Base Width" << base_width );
 	   }
 
 
@@ -222,9 +222,9 @@ void Odometry_calc::spin()
 	{
 		update();
 		loop_rate.sleep();
-	
+
 	}
-	
+
 }
 
 //Update function
@@ -232,7 +232,7 @@ void Odometry_calc::update()
 {
 
 	ros::Time now = ros::Time::now();
-	
+
 //	ros::Time elapsed;
 
 	double elapsed;
@@ -240,15 +240,15 @@ void Odometry_calc::update()
 	double d_left, d_right, d, th,x,y;
 
 
-	if ( now > t_next) 
+	if ( now > t_next)
 	{
 
-		elapsed = now.toSec() - then.toSec(); 
+		elapsed = now.toSec() - then.toSec();
 
  // 	        ROS_INFO_STREAM("elapsed =" << elapsed);
 
-		
-		
+
+
 		if(enc_left == 0)
 		{
 			d_left = 0;
@@ -259,7 +259,7 @@ void Odometry_calc::update()
 			d_left = (left - enc_left) / ( ticks_meter);
 			d_right = (right - enc_right) / ( ticks_meter);
 		}
-		
+
 		enc_left = left;
 		enc_right = right;
 
@@ -269,12 +269,12 @@ void Odometry_calc::update()
 
 
 		th = ( d_right - d_left ) / base_width;
-		
+
 		dx = d /elapsed;
 
 		dr = th / elapsed;
 
-	
+
 		if ( d != 0)
 		{
 
@@ -288,16 +288,16 @@ void Odometry_calc::update()
 
            	 if( th != 0)
                 	theta_final = theta_final + th;
-                	
+
                // Feed the odom values to the odom message header and the tf header, which will publish the topics in /odom and /tf
-               
+
 		    geometry_msgs::Quaternion odom_quat ;
 
 		    odom_quat.x = 0.0;
 		    odom_quat.y = 0.0;
 		    odom_quat.z = 0.0;
 
-            	    odom_quat.z = sin( theta_final / 2 );	
+            	    odom_quat.z = sin( theta_final / 2 );
             	    odom_quat.w = cos( theta_final / 2 );
 
 		    //first, we'll publish the transform over tf
@@ -314,7 +314,7 @@ void Odometry_calc::update()
 		    //send the transform
 		    odom_broadcaster.sendTransform(odom_trans);
 
-		    
+
 		    //next, we'll publish the odometry message over ROS
 		    nav_msgs::Odometry odom;
 		    odom.header.stamp = now;
@@ -327,7 +327,7 @@ void Odometry_calc::update()
 		    odom.pose.pose.orientation = odom_quat;
 
 		    //set the velocity
-		    odom.child_frame_id = "base_footprint";
+		    odom.child_frame_id = "base_link";
 		    odom.twist.twist.linear.x = dx;
 		    odom.twist.twist.linear.y = 0;
 		    odom.twist.twist.angular.z = dr;
@@ -347,8 +347,8 @@ void Odometry_calc::update()
 		}
 	 else { ; }
 //		ROS_INFO_STREAM("Not in loop");
-		
-		
+
+
 
 
 
@@ -367,15 +367,15 @@ void Odometry_calc::leftencoderCb(const std_msgs::Int64::ConstPtr& left_ticks)
 
 	if((enc < encoder_low_wrap) && (prev_lencoder > encoder_high_wrap))
 	{
-		
+
 		lmult = lmult + 1;
 	}
-	
+
 
 	if((enc > encoder_high_wrap) && (prev_lencoder < encoder_low_wrap))
 
 	{
-		
+
 		lmult = lmult - 1;
 	}
 
@@ -402,15 +402,15 @@ void Odometry_calc::rightencoderCb(const std_msgs::Int64::ConstPtr& right_ticks)
 
 	if((enc < encoder_low_wrap) && (prev_lencoder > encoder_high_wrap))
 	{
-		
+
 		rmult = rmult + 1;
 	}
-	
+
 
 	if((enc > encoder_high_wrap) && (prev_lencoder < encoder_low_wrap))
 
 	{
-		
+
 		rmult = rmult - 1;
 	}
 
