@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <!-- turtlebot_teleop_key already has its own built in velocity smoother -->
-  <node pkg="pegasus_bringup" type="pegasus_teleop_key" name="pegasus_teleop_keyboard"  output="screen">
+  <!--node pkg="pegasus_bringup" type="pegasus_teleop_key" name="pegasus_teleop_keyboard"  output="screen"-->
 
+    <!-- start a teleop program -->
+     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen"/>
 <!--    <remap from="arlobot_teleop_keyboard/cmd_vel" to="diffbot_controller/cmd_vel"/> -->
-    <remap from="pegasus_teleop_keyboard/cmd_vel" to="cmd_vel_mux/input/teleop"/>
-  </node>
+    <!--remap from="pegasus_teleop_keyboard/cmd_vel" to="cmd_vel_mux/input/teleop"/-->
+  <!--/node-->
 </launch>
