@@ -25,7 +25,7 @@
 <!-- ########################################################################################################################### -->
 
 	<!-- Wheel Enconders odometry -->
-	<node pkg="pegasus_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/>
+	<!--node pkg="pegasus_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/-->
 
 	<!-- C ++ -->
 
