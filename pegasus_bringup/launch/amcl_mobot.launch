@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<launch>
 <!-- Run the map server and load the starting-pen map -->
-<node name="map_server" pkg="map_server" type="map_server"
-   args="$(find pegasus_bringup)/map/mapa_lse_centralizado.yaml"/>
+<node name="map_server" pkg="map_server" type="map_server" args="$(find pegasus_bringup)/map/mapa_lse_centralizado.yaml"/>
 
  <!-- use amcl for localization-->
  <!--node pkg="amcl" type="amcl" name="amcl" output="screen"-->
 <!-- alt: try differential-drive amcl config params -->
+
 <include file="$(find amcl)/examples/amcl_diff.launch"/>
 
 <!--alt: instead of loading a map and localizing on it, could run slam dynamically -->
