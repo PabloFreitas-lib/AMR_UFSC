@@ -64,57 +64,77 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        pegasus_caster_back_link:
+        batterybox:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        pegasus_caster_front_link:
+        bracketside1_left:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        cliff_sensor_front_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        cliff_sensor_left_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        cliff_sensor_right_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        gyro_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_axle_link:
+        bracketside1_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel_link:
+        bracketside2_left:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_axle_link:
+        bracketside2_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel_link:
+        brackettop_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        brackettop_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        castdrop_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        castdrop_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_casterwheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lidar_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_casterwheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -244,7 +264,7 @@ Visualization Manager:
           Topic: /move_base/TrajectoryPlannerROS/global_plan
           Unreliable: false
           Value: true
-      Enabled: false
+      Enabled: true
       Name: Global Map
     - Class: rviz/Group
       Displays:
@@ -281,7 +301,7 @@ Visualization Manager:
           Topic: /move_base/TrajectoryPlannerROS/local_plan
           Unreliable: false
           Value: true
-      Enabled: false
+      Enabled: true
       Name: Local Map
     - Alpha: 1
       Arrow Length: 0.200000003
@@ -421,7 +441,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 658.958862
+      Scale: 52.7289886
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: 0.0476804823
@@ -443,5 +463,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 928
-  X: 65
+  X: 992
   Y: 24
