@@ -13,8 +13,6 @@
 <!--node name="slam_gmapping" pkg="gmapping" type="slam_gmapping"/-->
 
 
-<!-- launch rviz using a specific config file -->
-<node pkg="rviz" type="rviz" name="rviz" args="-d $(find mobot_nav_config)/nav_rviz.rviz"/>
 
 <!--move_base w/ navstack config files-->
 <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
