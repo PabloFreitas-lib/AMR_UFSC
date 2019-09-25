@@ -7,7 +7,7 @@
 	<!--arg name="simulation" default="$(optenv TURTLEBOT_SIMULATION false)"/-->
 	<!--arg name="urdf_file" default="$(find xacro)/xacro --><!--inorder '$(find pegasus_description)/urdf/pegasus_base.urdf.xacro'" /-->
 	<!-- mobot_w_lidar urdf file -->
-	<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find mobot_urdf)/urdf/mobot_w_lidar.xacro'" />
+	<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find pegasus_description)/urdf/mobot_w_lidar.xacro'" />
 
 	<arg name="scan_topic" default="scan"/>	<!-- Laserscan topic -->
 	<param name="/use_sim_time" value="false"/>
