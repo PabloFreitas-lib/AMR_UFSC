@@ -7,7 +7,6 @@ add_definitions(--std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   urdf
   xacro
-  kobuki_description
 )
 
 ## System dependencies are found with CMake's conventions

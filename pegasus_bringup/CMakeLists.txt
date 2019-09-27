@@ -6,7 +6,6 @@ add_definitions(--std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   actionlib
-  depthimage_to_laserscan
   geometry_msgs
   move_base_msgs
   nav_msgs
@@ -90,7 +89,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES pegasus_bringup
-#  CATKIN_DEPENDS actionlib depthimage_to_laserscan geometry_msgs move_base_msgs nav_msgs openni_launch robot_pose_ekf robot_state_publisher roscpp rospy std_msgs tf
+#  CATKIN_DEPENDS actionlib geometry_msgs move_base_msgs nav_msgs robot_pose_ekf robot_state_publisher roscpp rospy std_msgs tf
 #  DEPENDS system_lib
 )
 
