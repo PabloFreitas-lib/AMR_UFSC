@@ -8,6 +8,6 @@
 
 
   <!-- launch rviz using a specific config file -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mobot_nav_config)/nav_rviz.rviz"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pegasus_bringup)/rviz/nav_rviz.rviz"/>
 
 </launch>

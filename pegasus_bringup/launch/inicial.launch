@@ -3,7 +3,7 @@
 
 							<!-- Argumentos e parametros -->
 
-	<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find pegasus_description)/urdf/mobot_w_lidar.xacro'" />
+	<arg name="urdf_file" default="$(find xacro)/xacro '$(find pegasus_description)/urdf/mobot_w_lidar.xacro'" />
 
 	<arg name="scan_topic" default="scan"/>	<!-- Laserscan topic -->
 	<param name="/use_sim_time" value="false"/>
@@ -19,11 +19,17 @@
 							<!-- Nos e pacotes -->
 
 <!-- ########################################################################################################################### -->
+<!-- Wheel Enconders odometry -->
+
+<node pkg="pegasus_bringup" type="diff_tf.py" name="diff_tf" output="screen"/>
+<!--node pkg="pegasus_bringup" type="twist_to_motor" name="twist_to_motor" output="screen"/-->
+<node pkg="pegasus_bringup" type="twist_to_motors" name="twist_to_motor" output="screen"/>
 
 
 
-	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
-
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+	<param name="publish_frequency" type="double" value="5.0" />
+</node>
 	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
 
 
@@ -76,12 +82,6 @@
 		<rosparam param="rolling_pts">5</rosparam>
 
 	</node>
-
-
-	<!-- Wheel Enconders odometry -->
-
-	<node pkg="pegasus_bringup" type="twist_to_motors.py" name="twist_to_motors" output="screen"/>
- 	<node pkg="pegasus_bringup" type="diff_tf.py" name="diff_tf" output="screen"/>
 
 <!-- ########################################################################################################################### -->
 
