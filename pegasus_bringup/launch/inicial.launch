@@ -80,7 +80,7 @@
 
 	<!-- Wheel Enconders odometry -->
 
-	<!--node pkg="pegasus_bringup" type="twist_to_motors.py" name="twist_to_motors" output="screen"/-->
+	<node pkg="pegasus_bringup" type="twist_to_motors.py" name="twist_to_motors" output="screen"/>
  	<node pkg="pegasus_bringup" type="diff_tf.py" name="diff_tf" output="screen"/>
 
 <!-- ########################################################################################################################### -->
