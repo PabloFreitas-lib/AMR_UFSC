@@ -3,10 +3,6 @@
 
 							<!-- Argumentos e parametros -->
 
-<!-- ########################################################################################################################### -->
-	<!--arg name="simulation" default="$(optenv TURTLEBOT_SIMULATION false)"/-->
-	<!--arg name="urdf_file" default="$(find xacro)/xacro --><!--inorder '$(find pegasus_description)/urdf/pegasus_base.urdf.xacro'" /-->
-	<!-- mobot_w_lidar urdf file -->
 	<arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find pegasus_description)/urdf/mobot_w_lidar.xacro'" />
 
 	<arg name="scan_topic" default="scan"/>	<!-- Laserscan topic -->
@@ -24,30 +20,16 @@
 
 <!-- ########################################################################################################################### -->
 
-	<!-- Wheel Enconders odometry -->
 
-	<node pkg="pegasus_bringup" type="twist_to_motors.py" name="twist_to_motors" output="screen"/>
- <node pkg="pegasus_bringup" type="diff_tf.py" name="diff_tf" output="screen"/>
-	<!--node pkg="pegasus_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/-->
 
-	<!-- C ++ -->
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
 
-	<!--node pkg="pegasus_navig_cpp" type="twist_to_motor" name="twist_to_motor" output="screen"/-->
-	<!--node pkg="pegasus_navig_cpp" type="diff_tf" name="diff_tf" output="screen"/-->
+	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
 
-	 <!-- Laser scan tf -->
+
+	<!-- Laser scan tf -->
 	<!--node name="base_to_laser_scan" pkg="tf" type="static_transform_publisher" args="0.07 0 0 0 0 0 1 /base_link /laser 40"/-->
-
-	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-		<!--param name="publish_frequency" type="double" value="5.0" /-->
-	</node>
-
-	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
-		<!--jointName>cast2bracket_right, cast2bracket_left, right_caster_joint, left_caster_joint </jointName>
-		<updateRate>100</updateRate-->
-	</node>
-
-	<node pkg="tf" type="static_transform_publisher" name="lidar_publisher" args="1 0 0 0 0 0 1 base_link lidar_link 100" />
+	<node pkg="tf" type="static_transform_publisher" name="lidar_publisher" args="0.1 0 0.56 0 0 0 1 base_link lidar_link 100" />
 
 
 
@@ -57,6 +39,9 @@
 
 
 
+	<!--
+	pid_velocity - takes messages on wheel_vtarget target velocities    for the wheels and monitors wheel for feedback
+-->
 	<node name="lpid_velocity" pkg="pegasus_bringup" type="pid_velocity.py" output="screen">
 
 		<remap from="wheel" to="lwheel"/>
@@ -74,9 +59,6 @@
 
 	</node>
 
-	<!--
-	pid_velocity - takes messages on wheel_vtarget target velocities    for the wheels and monitors wheel for feedback
-	-->
 	<node name="rpid_velocity" pkg="pegasus_bringup" type="pid_velocity.py" output="screen">
 
 		<remap from="wheel" to="rwheel"/>
@@ -94,6 +76,12 @@
 		<rosparam param="rolling_pts">5</rosparam>
 
 	</node>
+
+
+	<!-- Wheel Enconders odometry -->
+
+	<!--node pkg="pegasus_bringup" type="twist_to_motors.py" name="twist_to_motors" output="screen"/-->
+ 	<node pkg="pegasus_bringup" type="diff_tf.py" name="diff_tf" output="screen"/>
 
 <!-- ########################################################################################################################### -->
 
