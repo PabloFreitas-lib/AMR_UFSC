@@ -1,4 +1,4 @@
-image: home/lse-pi/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2.pgm
+image: /home/lse-pi/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2.pgm
 resolution: 0.050000
 origin: [-51.224998, -51.224998, 0.000000]
 negate: 0
