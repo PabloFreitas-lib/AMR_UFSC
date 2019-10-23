@@ -15,7 +15,7 @@ public:
 
 private:
 	ros::NodeHandle n;
-	
+
 	ros::Publisher pub_lmotor;
 	ros::Publisher pub_rmotor;
 
@@ -45,15 +45,15 @@ TwistToMotors::TwistToMotors()
 {
 	init_variables();
 	get_parameters();
-	
+
 	ROS_INFO("Started Twist to Motor node");
-	
-	cmd_vel_sub = n.subscribe("cmd_vel_mux/input/teleop",10, &TwistToMotors::twistCallback, this);
-	
+
+	cmd_vel_sub = n.subscribe("cmd_vel_mux/input/navi",10, &TwistToMotors::twistCallback, this);
+
 	pub_lmotor = n.advertise<std_msgs::Float32>("lwheel_vtarget", 50);
 
 	pub_rmotor = n.advertise<std_msgs::Float32>("rwheel_vtarget", 50);
-	
+
 
 
 }
@@ -78,23 +78,23 @@ void TwistToMotors::get_parameters()
 {
 
 
-	
+
         if(n.getParam("rate", rate)){
-	 
-		ROS_INFO_STREAM("Rate from param" << rate);	       
+
+		ROS_INFO_STREAM("Rate from param" << rate);
 	}
 
 
-	
+
         if(n.getParam("timeout_ticks", timeout_ticks)){
-	 
-		ROS_INFO_STREAM("timeout_ticks from param" << timeout_ticks);	       
+
+		ROS_INFO_STREAM("timeout_ticks from param" << timeout_ticks);
 	}
 
-	
+
         if(n.getParam("base_width", w)){
-	 
-		ROS_INFO_STREAM("Base_width from param" << w);	       
+
+		ROS_INFO_STREAM("Base_width from param" << w);
 	}
 
 
@@ -107,22 +107,22 @@ void TwistToMotors::spin()
 	ros::Rate idle(10);
 
 	ros::Time then = ros::Time::now();
-	
+
 	ticks_since_target = timeout_ticks;
 
-	
+
 
 	while (ros::ok())
 	{
-	while (ros::ok() && (ticks_since_target <= timeout_ticks))	
-		{		
+	while (ros::ok() && (ticks_since_target <= timeout_ticks))
+		{
 
 		spinOnce();
 		r.sleep();
 
 		}
 	ros::spinOnce();
-        idle.sleep();	
+        idle.sleep();
 
 	}
 
@@ -135,7 +135,7 @@ void TwistToMotors::spinOnce()
         // dx = (l + r) / 2
         // dr = (r - l) / w
 
-	
+
 	right = ( 1.0 * dx ) + (dr * w /2);
 	left = ( 1.0 * dx ) - (dr * w /2);
 
@@ -164,7 +164,7 @@ void TwistToMotors::twistCallback(const geometry_msgs::Twist &msg)
 {
 
 	ticks_since_target = 0;
-	
+
 	dx = msg.linear.x;
 	dy = msg.linear.y;
 	dr = msg.angular.z;
