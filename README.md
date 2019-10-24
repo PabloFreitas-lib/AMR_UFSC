@@ -79,17 +79,13 @@ This project is licensed under the [Attribution 4.0 International](LICENSE.md) C
 
 ## Author
 
--   **Adriano** - _Acesso ao Git_ - [PabloFreitasUfsc](https://github.com/PabloFreitasUfsc)
--   **Andre - _Acesso ao Git_ - [PabloFreitasUfsc](https://github.com/PabloFreitasUfsc)
--   **Jean** - _Acesso ao Git_ - [PabloFreitasUfsc](https://github.com/PabloFreitasUfsc)
--   **Lígia** - _Acesso ao Git_ - [PabloFreitasUfsc](https://github.com/PabloFreitasUfsc)
+-   **Adriano**
+-   **André**
+-   **Jean**
+-   **Lígia**
 -   **Pablo Freitas Santos** - _Acesso ao Git_ - [PabloFreitasUfsc](https://github.com/PabloFreitasUfsc)
 
 
 ## Acknowledgments
 
 -   <https://github.com/PurpleBooth>
-
-## Running the tests
-
-Explain how to run the automated tests for this system
