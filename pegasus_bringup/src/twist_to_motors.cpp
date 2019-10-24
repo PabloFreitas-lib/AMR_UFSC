@@ -32,6 +32,8 @@ private:
 
 	float dx,dy,dr;
 
+	std::string cmd_vel_topic;
+
 
 	void init_variables();
 	void get_parameters();
@@ -48,7 +50,7 @@ TwistToMotors::TwistToMotors()
 
 	ROS_INFO("Started Twist to Motor node");
 
-	cmd_vel_sub = n.subscribe("cmd_vel_mux/input/navi",10, &TwistToMotors::twistCallback, this);
+	cmd_vel_sub = n.subscribe(cmd_vel_topic,10, &TwistToMotors::twistCallback, this);
 
 	pub_lmotor = n.advertise<std_msgs::Float32>("lwheel_vtarget", 50);
 
@@ -69,34 +71,27 @@ void TwistToMotors::init_variables()
 	rate = 50;
 	timeout_ticks = 2;
 
-
+	cmd_vel_topic = "cmd_vel_mux/input/teleop";
 
 }
 
 
 void TwistToMotors::get_parameters()
 {
-
-
-
         if(n.getParam("rate", rate)){
-
 		ROS_INFO_STREAM("Rate from param" << rate);
 	}
 
-
-
         if(n.getParam("timeout_ticks", timeout_ticks)){
-
 		ROS_INFO_STREAM("timeout_ticks from param" << timeout_ticks);
 	}
 
-
         if(n.getParam("base_width", w)){
-
 		ROS_INFO_STREAM("Base_width from param" << w);
 	}
-
+				if(n.getParam("cmd_vel_topic",cmd_vel_topic)){
+		ROS_INFO_STREAM("cmd_vel_topic from param" << cmd_vel_topic);
+	}
 
 }
 
