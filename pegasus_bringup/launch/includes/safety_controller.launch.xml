@@ -1,6 +1,4 @@
-<!-- 
-    Safety controller
--->
+<!-- Safety controller -->
 <launch>
   <node pkg="nodelet" type="nodelet" name="kobuki_safety_controller" args="load kobuki_safety_controller/SafetyControllerNodelet /mobile_base_nodelet_manager">
     <remap from="kobuki_safety_controller/cmd_vel" to="/cmd_vel_mux/input/safety_controller"/>

@@ -31,8 +31,6 @@ table_position[8] = (1.757, 4.377, 0.010, 0, 0, -0.040, 0.999)
 table_position[9] = (1.757, 4.377, 0.010, 0, 0, -0.040, 0.999)
 
 
-
-
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -41,11 +39,13 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -104,91 +104,85 @@ class Ui_Form(object):
         self.label_4.setText(_fromUtf8(""))
         self.label_4.setObjectName(_fromUtf8("label_4"))
 
-	self.table_no = 0
-	self.current_table_position = 0
-	self.client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
-	self.goal = MoveBaseGoal()
+        self.table_no = 0
+        self.current_table_position = 0
+        self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
+        self.goal = MoveBaseGoal()
 
-
-
-	self.update_values()
-
+        self.update_values()
 
         self.retranslateUi(Form)
-        QtCore.QObject.connect(self.spinBox, QtCore.SIGNAL(_fromUtf8("valueChanged(int)")), self.set_table_number)
-        QtCore.QObject.connect(self.pushButton_3, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Home)
-        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Go)
-        QtCore.QObject.connect(self.pushButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Cancel)
+        QtCore.QObject.connect(self.spinBox, QtCore.SIGNAL(
+            _fromUtf8("valueChanged(int)")), self.set_table_number)
+        QtCore.QObject.connect(self.pushButton_3, QtCore.SIGNAL(
+            _fromUtf8("clicked()")), self.Home)
+        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(
+            _fromUtf8("clicked()")), self.Go)
+        QtCore.QObject.connect(self.pushButton_2, QtCore.SIGNAL(
+            _fromUtf8("clicked()")), self.Cancel)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-
     def set_table_number(self):
-	self.table_no = self.spinBox.value()
-	self.current_table_position = table_position[self.table_no]
-	print self.current_table_position
+        self.table_no = self.spinBox.value()
+        self.current_table_position = table_position[self.table_no]
+        print self.current_table_position
 
     def Go(self):
-	print "Go"
+        print "Go"
 
-
-	print "Waiting for server"
+        print "Waiting for server"
 #	self.client.wait_for_server()
 
-	
-	self.goal.target_pose.pose.position.x=float(self.current_table_position[0])
-	self.goal.target_pose.pose.position.y=float(self.current_table_position[1])
-	self.goal.target_pose.pose.position.z=float(self.current_table_position[2])
+        self.goal.target_pose.pose.position.x = float(
+            self.current_table_position[0])
+        self.goal.target_pose.pose.position.y = float(
+            self.current_table_position[1])
+        self.goal.target_pose.pose.position.z = float(
+            self.current_table_position[2])
 
-	self.goal.target_pose.pose.orientation.x = float(self.current_table_position[3])
-	self.goal.target_pose.pose.orientation.y= float(self.current_table_position[4])
-	self.goal.target_pose.pose.orientation.z= float(self.current_table_position[5])
+        self.goal.target_pose.pose.orientation.x = float(
+            self.current_table_position[3])
+        self.goal.target_pose.pose.orientation.y = float(
+            self.current_table_position[4])
+        self.goal.target_pose.pose.orientation.z = float(
+            self.current_table_position[5])
 
-	self.goal.target_pose.header.frame_id= 'map'
-	self.goal.target_pose.header.stamp = rospy.Time.now()
+        self.goal.target_pose.header.frame_id = 'map'
+        self.goal.target_pose.header.stamp = rospy.Time.now()
 
-	
+
 #	print temp_table_pose[0]
 #	print temp_table_pose[1]
 
-	print "Go"
+        print "Go"
 
-	self.client.send_goal(self.goal)
+        self.client.send_goal(self.goal)
 
 #	self.client.wait_for_result()
 #	rospy.loginfo(self.client.get_result())
 
-
-
     def Cancel(self):
-	print "Cancel"
-	self.client.cancel_all_goals()
-
-
-
+        print "Cancel"
+        self.client.cancel_all_goals()
 
     def Home(self):
-	print "Home"
-	self.current_table_position = table_position[0]
-	self.Go()
+        print "Home"
+        self.current_table_position = table_position[0]
+        self.Go()
 
+    def add(self, text):
 
-    def add(self,text):
-
-	battery_value = rospy.get_param("battery_value")
-	robot_status = rospy.get_param("robot_status")
+        battery_value = rospy.get_param("battery_value")
+        robot_status = rospy.get_param("robot_status")
 
         self.progressBar.setProperty("value", battery_value)
         self.label_4.setText(_fromUtf8(robot_status))
- 
-
 
     def update_values(self):
-  	self.thread =  WorkThread() 
-  	QtCore.QObject.connect( self.thread,  QtCore.SIGNAL("update(QString)"), self.add )
-  	self.thread.start()
-
-
-
+        self.thread = WorkThread()
+        QtCore.QObject.connect(
+            self.thread,  QtCore.SIGNAL("update(QString)"), self.add)
+        self.thread.start()
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Robot", None))
@@ -200,39 +194,32 @@ class Ui_Form(object):
         self.label_3.setText(_translate("Form", "Robot Status", None))
 
 
-
-
-
 class WorkThread(QtCore.QThread):
-	def __init__(self):
-		QtCore.QThread.__init__(self)
- 
-	def __del__(self):
-		self.wait()
- 
-	def run(self):
-		while True:
-			time.sleep(0.3) # artificial time delay
-			self.emit( QtCore.SIGNAL('update(QString)'), " " ) 
+    def __init__(self):
+        QtCore.QThread.__init__(self)
+
+    def __del__(self):
+        self.wait()
+
+    def run(self):
+        while True:
+            time.sleep(0.3)  # artificial time delay
+            self.emit(QtCore.SIGNAL('update(QString)'), " ")
 #			print "Hello"
-	
-   
-  		return
+
+        return
+
 
 if __name__ == "__main__":
-	import sys
+    import sys
 
+    rospy.init_node('robot_gui')
+    rospy.set_param('battery_value', 0)
+    rospy.set_param('robot_status', " ")
 
-
-	rospy.init_node('robot_gui')
-	rospy.set_param('battery_value',0)
-	rospy.set_param('robot_status'," ")
-
-
-	app = QtGui.QApplication(sys.argv)
-	Form = QtGui.QWidget()
-	ui = Ui_Form()
-	ui.setupUi(Form)
-	Form.show()
-	sys.exit(app.exec_())
-
+    app = QtGui.QApplication(sys.argv)
+    Form = QtGui.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
