@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 '''
 Created on November 20, 2010
-
 @author: Dr. Rainer Hessmer
 '''
 import threading
@@ -20,7 +19,7 @@ class SerialDataGateway(object):
     Helper class for receiving lines from a serial port
     '''
 
-    def __init__(self, port="/dev/ttyACM0", baudrate=115200, lineHandler=_OnLineReceived):
+    def __init__(self, port="/dev/ttyUSB0", baudrate=115200, lineHandler=_OnLineReceived):
         '''
         Initializes the receiver class.
         port: The serial port to listen to.
@@ -65,7 +64,7 @@ class SerialDataGateway(object):
         self._Serial.write(data)
 
     if __name__ == '__main__':
-        dataReceiver = SerialDataGateway("/dev/ttyACM0",  115200)
+        dataReceiver = SerialDataGateway("/dev/ttyUSB0",  115200)
         dataReceiver.Start()
 
         raw_input("Hit <Enter> to end.")
