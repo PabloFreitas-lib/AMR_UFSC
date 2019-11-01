@@ -34,8 +34,6 @@
 //Contain definition of maximum limits of various data type
 #include <limits.h>
 
-//Creating MPU6050 Object
-// MPU6050 mpu;
 
 //Messenger object
 Messenger Messenger_Handler = Messenger();
@@ -57,54 +55,6 @@ float elapsedTime, currentTime, previousTime;
 int c = 0;
 
 Quaternion q;
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-//DMP options
-//Set true if DMP init was successful
-// bool dmpReady = false;
-// //Holds actual interrupt status byte from MPU
-// uint8_t mpuIntStatus;
-// //return status after each device operation
-// uint8_t devStatus;
-// //Expected DMP paclet size
-// uint16_t packetSize;
-// //count of all bytes currently in FIFO
-// uint16_t fifoCount;
-// //FIFO storate buffer
-// uint8_t fifoBuffer[64];
-//
-//
-// #define OUTPUT_READABLE_QUATERNION
-// //////////////////////////////////////////////////////////////////////////////////////////////
-//
-// // orientation/motion vars
-// Quaternion q;
-// VectorInt16 aa;
-// VectorInt16 aaReal;
-// VectorInt16 aaWorld;
-// VectorFloat gravity;
-//
-// float euler[3];
-// float ypr[3];
-
-
-
-
-// ================================================================
-// ===               INTERRUPT DETECTION ROUTINE                ===
-// ================================================================
-//
-// volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
-// void dmpDataReady() {
-//         mpuInterrupt = true;
-// }
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -132,16 +82,6 @@ int PWM_E2 = PB_1; //PWM2 - PH2
 int Esquerda_d = PE_4; //sinal de 5v para as duas entradas encoder - PH3
 
 
-
-
-//Encoder DIREITA - levelUP DIREITA
-/*
-   int PF4 = PF_4; // - PH1
-   int PD7 = PD_7; // - PH2
-   //Encoder ESQUERDA
-   int PD6 = PD_6; // - PH4
-   int PC7 = PC_7; // - PH3*/
-
 ///////////////////////////////////////////////////////////////
 //Encoder pins definition
 
@@ -159,34 +99,9 @@ volatile long Left_Encoder_Ticks = 0;
 
 volatile long Right_Encoder_Ticks = 0;
 
-// fim do codigo novo
 
 
-/*
-   /////////////////////////////////////////////////////////////////
-   //Motor Pin definition
-   //Left Motor pins
- #define A_1 PA_3
-   //PWM 1 pin number
- #define PWM_1 PC_4 // PC_5 nao funcionou, evitar essa porta
-   //Right Motor
- #define B_1 PA_5
-   //PWM 2 pin number
- #define PWM_2 PC_6
- */
-//HIGH ativa a ponte H
-//LOW desativa
-//#define STOP_MOTOR_R PB_0
-//#define STOP_MOTOR_L PB_1
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Ultrasonic pins definition
-const int echo = PE_4, Trig = PE_5;
-long duration, cm;
-
-//Reset pin for resetting Tiva C, if this PIN set high, Tiva C will reset
-
-#define RESET_PIN PB_2
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Time  update variables
@@ -203,18 +118,8 @@ float SecondsSinceLastUpdate = 0;
 float motor_left_speed = 0;
 float motor_right_speed = 0;
 /////////////////////////////////////////////////////////////////
-/*
-   ///////////////////////////////////////////////////////////////
-   //Encoder pins definition
-   // Left encoder 5V( preto GND - Vermelho VCC)
- #define Left_Encoder_PinA PD_6 // branco Antiga PD_7
- #define Left_Encoder_PinB PC_7 // verde  Antiga PD_6
-   volatile long Left_Encoder_Ticks = 0;
-   // Right encoder 5V( preto GND - Vermelho VCC)
- #define Right_Encoder_PinA PF_4 // branco Antiga PE_2
- #define Right_Encoder_PinB PD_7 // verde  Antiga PE_3
-   volatile long Right_Encoder_Ticks = 0;
- */
+
+
 //SetupEncoders() Definition
 
 void SetupEncoders()
@@ -249,7 +154,7 @@ void setup()
         Setup_MPU6050();
 
         //Setup Reset pins
-        SetupReset();
+        //SetupReset();
 
         //Set up Messenger
         Messenger_Handler.attach(OnMssageCompleted);
@@ -257,13 +162,6 @@ void setup()
 
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Setup UltrasonicsSensor() function
-// void SetupUltrasonic()
-// {
-//         pinMode(Trig, OUTPUT);
-//         pinMode(echo, INPUT);
-// }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Setup Motors() function
@@ -290,40 +188,9 @@ void SetupMotors()
 }
 
 
-//Setup Reset() function
-
-void SetupReset()
-
-{
-
-
-        pinMode(GREEN_LED,OUTPUT);
-        pinMode(RESET_PIN,OUTPUT);
-
-
-        ///Conenect RESET Pins to the RESET pin of launchpad,its the 16th PIN
-        digitalWrite(RESET_PIN,HIGH);
-
-
-}
-
 
 void Setup_MPU6050()
 {
-
-        //
-        // Wire.begin();
-        // // initialize device
-        // Serial.println("Initializing I2C devices...");
-        // mpu.initialize();
-        //
-        // // verify connection
-        // Serial.println("Testing device connections...");
-        // Serial.println(mpu.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
-        //
-        // //Initialize DMP in MPU 6050
-        // Setup_MPU6050_DMP();
-        //Serial.begin(9600);
         Wire.begin();                       // Initialize comunication
         Wire.beginTransmission(MPU);        // Start communication with MPU6050 // MPU=0x68
         Wire.write(0x6B);                   // Talk to the register 6B
@@ -354,42 +221,6 @@ void ToQuaternion(float yaw, float pitch, float roll) // yaw (Z), pitch (Y), rol
 
 }
 
-//Setup MPU 6050 DMP
-// void Setup_MPU6050_DMP()
-// {
-//
-// //DMP Initialization
-//
-// devStatus = mpu.dmpInitialize();
-//
-// mpu.setXGyroOffset(220);
-// mpu.setXGyroOffset(76);
-// mpu.setXGyroOffset(-85);
-// mpu.setXGyroOffset(1788);
-//
-//
-// if(devStatus == 0)
-// {
-//
-//         mpu.setDMPEnabled(true);
-//
-//         pinMode(PUSH2,INPUT_PULLUP);
-//         attachInterrupt(PUSH2, dmpDataReady, RISING);
-//
-//         mpuIntStatus = mpu.getIntStatus();
-//
-//         dmpReady = true;
-//
-//         packetSize = mpu.dmpGetFIFOPacketSize();
-//
-// }
-// /*else{
-//    ;
-//    }*/
-
-
-// }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MAIN LOOP
@@ -419,9 +250,6 @@ void Update_Encoders()
         Serial.print("\t");
         Serial.print(Right_Encoder_Ticks);
         Serial.print("\n");
-
-
-
 }
 void loop()
 {
@@ -447,8 +275,6 @@ void loop()
 }
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Read from Serial Function
 
@@ -457,13 +283,9 @@ void Read_From_Serial()
 {
         while(Serial.available() > 0)
         {
-
                 int data = Serial.read();
                 Messenger_Handler.process(data);
-
-
         }
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -497,12 +319,8 @@ void OnMssageCompleted()
 //Set speed
 void Set_Speed()
 {
-
         motor_left_speed = Messenger_Handler.readLong();
         motor_right_speed = Messenger_Handler.readLong();
-
-
-
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Reset function
@@ -518,17 +336,13 @@ void Reset()
 
         digitalWrite(GREEN_LED,HIGH);
         delay(1000);
-        digitalWrite(RESET_PIN,HIGH);
         digitalWrite(GREEN_LED,LOW);
-
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Will update both motors
 void Update_Motors()
 {
-
         moveRightMotor(motor_right_speed);
         moveLeftMotor(motor_left_speed);
 
@@ -538,34 +352,8 @@ void Update_Motors()
         Serial.print("\t");
         Serial.print(motor_right_speed);
         Serial.print("\n");
-
-
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Will update ultrasonic sensors through serial port
-
-// void Update_Ultra_Sonic()
-// {
-//         digitalWrite(Trig, LOW);
-//         delayMicroseconds(2);
-//         digitalWrite(Trig, HIGH);
-//         delayMicroseconds(10);
-//         digitalWrite(Trig, LOW);
-//         // The echo pin is used to read the signal from the PING))): a HIGH
-//         // pulse whose duration is the time (in microseconds) from the sending
-//         // of the ping to the reception of its echo off of an object.
-//         duration = pulseIn(echo, HIGH);
-//         // convert the time into a distance
-//         cm = microsecondsToCentimeters(duration);
-//
-//         //Sending through serial port
-//         Serial.print("u");
-//         Serial.print("\t");
-//         Serial.print(cm);
-//         Serial.print("\n");
-//
-// }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Update time function
@@ -685,12 +473,6 @@ void moveLeftMotor(float leftServoValue)
 void Update_MPU6050()
 {
 
-        // int16_t ax, ay, az;
-        // int16_t gx, gy, gz;
-        //
-        // ///Update values from DMP for getting rotation vector
-        // Update_MPU6050_DMP();
-
         // Codigo do Dourado
 
         Wire.beginTransmission(MPU);
@@ -732,29 +514,6 @@ void Update_MPU6050()
 
 
         ToQuaternion(yaw, pitch, roll);
-
-
-        // Print the values on the serial monitor
-        //Serial.print("quat\t");
-        //Serial.print(q.w);
-        //Serial.print("\t");
-        //Serial.print(q.x);
-        //Serial.print("\t");
-        //Serial.print(q.y);
-        //Serial.print("\t");
-        //Serial.println(q.z);
-
-
-        //Serial.print(" Gx: ");
-        //Serial.print(AccX);
-        //Serial.print(" / ");
-        // Serial.print(" Gy: ");
-        //Serial.print(AccY);
-        //Serial.print(" / ");
-        // Serial.print(" Gz: ");
-        //Serial.println(AccZ);
-        //Serial.println("\n");
-        //delay(50);
 
         Serial.print("i"); Serial.print("\t");
          Serial.print(q.x); Serial.print("\t");
@@ -822,130 +581,3 @@ void calculate_IMU_error() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Update MPU6050 DMP functions
-
-// void Update_MPU6050_DMP()
-// {
-//
-// //DMP Processing
-//
-// if (!dmpReady) return;
-//
-// while (!mpuInterrupt && fifoCount < packetSize) {}
-//
-// mpuInterrupt = false;
-// mpuIntStatus = mpu.getIntStatus();
-//
-// //get current FIFO count
-// fifoCount = mpu.getFIFOCount();
-//
-//
-// if ((mpuIntStatus & 0x10) || fifoCount > 512)
-// {
-//         // reset so we can continue cleanly
-//         mpu.resetFIFO();
-// }
-//
-//
-//
-//
-// else if (mpuIntStatus & 0x02) {
-//         // wait for correct available data length, should be a VERY short wait
-//         while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
-//
-//         // read a packet from FIFO
-//         mpu.getFIFOBytes(fifoBuffer, packetSize);
-//
-//         // track FIFO count here in case there is > 1 packet available
-//         // (this lets us immediately read more without waiting for an interrupt)
-//         fifoCount -= packetSize;
-//
-// #ifdef OUTPUT_READABLE_QUATERNION
-//         // display quaternion values in easy matrix form: w x y z
-//         mpu.dmpGetQuaternion(&q, fifoBuffer);
-//
-//
-//         Serial.print("i"); Serial.print("\t");
-//         Serial.print(q.x); Serial.print("\t");
-//         Serial.print(q.y); Serial.print("\t");
-//         Serial.print(q.z); Serial.print("\t");
-//         Serial.print(q.w);
-//         Serial.print("\n");
-//
-//
-// #endif
-//
-// #ifdef OUTPUT_READABLE_EULER
-//         // display Euler angles in degrees
-//         mpu.dmpGetQuaternion(&q, fifoBuffer);
-//         mpu.dmpGetEuler(euler, &q);
-//         Serial.print("euler\t");
-//         Serial.print(euler[0] * 180/M_PI);
-//         Serial.print("\t");
-//         Serial.print(euler[1] * 180/M_PI);
-//         Serial.print("\t");
-//         Serial.println(euler[2] * 180/M_PI);
-// #endif
-//
-// #ifdef OUTPUT_READABLE_YAWPITCHROLL
-//         // display Euler angles in degrees
-//         mpu.dmpGetQuaternion(&q, fifoBuffer);
-//         mpu.dmpGetGravity(&gravity, &q);
-//         mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-//         Serial.print("ypr\t");
-//         Serial.print(ypr[0] * 180/M_PI);
-//         Serial.print("\t");
-//         Serial.print(ypr[1] * 180/M_PI);
-//         Serial.print("\t");
-//         Serial.println(ypr[2] * 180/M_PI);
-// #endif
-//
-// #ifdef OUTPUT_READABLE_REALACCEL
-//         // display real acceleration, adjusted to remove gravity
-//         mpu.dmpGetQuaternion(&q, fifoBuffer);
-//         mpu.dmpGetAccel(&aa, fifoBuffer);
-//         mpu.dmpGetGravity(&gravity, &q);
-//         mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);
-//         Serial.print("areal\t");
-//         Serial.print(aaReal.x);
-//         Serial.print("\t");
-//         Serial.print(aaReal.y);
-//         Serial.print("\t");
-//         Serial.println(aaReal.z);
-// #endif
-//
-// #ifdef OUTPUT_READABLE_WORLDACCEL
-//         // display initial world-frame acceleration, adjusted to remove gravity
-//         // and rotated based on known orientation from quaternion
-//         mpu.dmpGetQuaternion(&q, fifoBuffer);
-//         mpu.dmpGetAccel(&aa, fifoBuffer);
-//         mpu.dmpGetGravity(&gravity, &q);
-//         mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);
-//         mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
-//         Serial.print("aworld\t");
-//         Serial.print(aaWorld.x);
-//         Serial.print("\t");
-//         Serial.print(aaWorld.y);
-//         Serial.print("\t");
-//         Serial.println(aaWorld.z);
-// #endif
-//
-// #ifdef OUTPUT_TEAPOT
-//         // display quaternion values in InvenSense Teapot demo format:
-//         teapotPacket[2] = fifoBuffer[0];
-//         teapotPacket[3] = fifoBuffer[1];
-//         teapotPacket[4] = fifoBuffer[4];
-//         teapotPacket[5] = fifoBuffer[5];
-//         teapotPacket[6] = fifoBuffer[8];
-//         teapotPacket[7] = fifoBuffer[9];
-//         teapotPacket[8] = fifoBuffer[12];
-//         teapotPacket[9] = fifoBuffer[13];
-//         Serial.write(teapotPacket, 14);
-//         teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
-// #endif
-//
-//
-// }
-
-
-// }
