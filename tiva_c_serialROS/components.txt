@@ -1,0 +1,52 @@
+
+2x arduino nano ou 1x Arduino Uno
+1x MPU 6050
+2x Wheel Encoders
+2x H-Bridge 
+===============================================================
+
+MPU:
+
+Entrada I2C:
+(PINOS MACHO --> PINOS FEMEA (PCB)) DONE
+
+	A4 - SDA
+	A5 - SCL
+
+===============================================================
+Motors: Each Motor with one Arduino Nano
+Left:
+	H-Bridge: (PINOS MACHO --> PINOS FEMEA (PCB)) 
+
+		PWM1 - PB_0(OLD) Analog Write - PD_5
+		PWM2 - PB_1(OLD) Analog Write - PD_6
+
+		Digital - PE_4(OLD) Digital Write - PC_0 
+
+	Encoder: (FIOS --> BORNE) DONE
+
+		Digital(white) - PD_6(OLD)  Digital Read - PC_1
+		Digital(green) - PC_7(OLD)  Digital Read - PC_2
+
+
+Right:
+
+	H-Bridge: (PINOS MACHO --> PINOS FEMEA (PCB))
+
+		PWM1 - PC_5(OLD) Analog Write - PD_5
+		PWM2 - PC_6(OLD) Analog Write - PD_6
+
+		Digital - PA_3(OLD) Digital Write - PC_0
+
+	Encoder: (FIOS --> BORNE) DONE
+
+		Digital(white) - PF_4(OLD) Digital Read - PC_1
+		Digital(green) - PD_7(OLD) Digital Read	- PC_2
+		VCC
+		GROUND
+
+
+
+==============================================================
+
+
