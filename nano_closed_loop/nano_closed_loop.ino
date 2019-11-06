@@ -1,34 +1,34 @@
 /*
- * 
+ *
  * Arduino Nano Pins:
 
 H-Bridge:
 Left:
 
-D5 Analog Write ( Forward)
-D6 Analog Write  ( Backwards)
+D5 Analog Write ( Forward) 5
+D6 Analog Write  ( Backwards) 6
 A0 Digital Write ( falta, desnecessauro)
 
 Right:
 
-D9 Analog Write ( Forward)
-D10 Analog Write  ( Backwards)
+D9 Analog Write ( Forward) 9
+D10 Analog Write  ( Backwards) 10
 A6 Digital Write ( falta, desnecessauro)
 
 
 Encoder:
 Left:
-A1 Digital Read
-A2 Digital Read
+A1 Digital Read  15
+A2 Digital Read  16
 Right:
-D7 Digital Read 
-D8 Digital Read 
+D7 Digital Read  7
+D8 Digital Read  8
 
 
 MPU:
 
-A4 - SDA
-A5 - SCL
+A4 - SDA  18
+A5 - SCL  19
  */
 
 //MPU 6050 Interfacing libraries
@@ -75,43 +75,33 @@ unsigned const int limite = 155;
 
 //definicoes
 
-// Motor DIREITA - LevelUP da ESQUERDA
-
-int PWM_D9 = 9; //PWM1 - PH4 // Para frente
-int PWM_D10 = 10; //PWM2 - PH3 // Para tras
-
-//int Direita_d = PA_3; // Sinal de 5v para as duas entradas encoder - PH1
-
-
-
 // Motor ESQUERDA - LevelUP do Meio
 
-int PWM_E1 = 5; //PWM1 - PH1
-int PWM_E2 = 6; //PWM2 - PH2
+int PWM_FRENTE_E = 5; // Para frente
+int PWM_TRAS_E = 6; // Para tras
 
-//int Esquerda_d = PE_4; //sinal de 5v para as duas entradas encoder - PH3
+// Motor DIREITA - LevelUP da ESQUERDA
+
+int PWM_FRENTE_D = 9;   // Para frente
+int PWM_TRAS_D = 10; // Para tras
 
 
 ///////////////////////////////////////////////////////////////
 //Encoder pins definition
 
 // Left encoder 5V( preto GND - Vermelho VCC)
-/*
-#define Left_Encoder_PinA PD_6 // branco
-#define Left_Encoder_PinB PC_7 // verde
+
+#define Left_Encoder_PinA 15 // branco
+#define Left_Encoder_PinB 16 // verde
 
 volatile long Left_Encoder_Ticks = 0;
 
 // Right encoder 5V( preto GND - Vermelho VCC)
 
-#define Right_Encoder_PinA PF_4 // branco
-#define Right_Encoder_PinB PD_7 // verde
+#define Right_Encoder_PinA 7 // branco
+#define Right_Encoder_PinB 8 // verde
 
 volatile long Right_Encoder_Ticks = 0;
-
-
-
-*/
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Time  update variables
@@ -134,25 +124,25 @@ float motor_right_speed = 0;
 
 void SetupEncoders()
 {
-      /*  pinMode(Left_Encoder_PinA,INPUT_PULLUP);
+        pinMode(Left_Encoder_PinA,INPUT_PULLUP);
         pinMode(Left_Encoder_PinB,INPUT_PULLUP);
 
         pinMode(Right_Encoder_PinA,INPUT_PULLUP);
         pinMode(Right_Encoder_PinB,INPUT_PULLUP);
 
         attachInterrupt(Left_Encoder_PinA, do_Left_Encoder, RISING);
-        attachInterrupt(Right_Encoder_PinA, do_Right_Encoder, RISING);*/
+        attachInterrupt(Right_Encoder_PinA, do_Right_Encoder, RISING);
 }
 int a=0,b=0;
 
 void setup()
 {
 
-        //Init Serial port with 115200 baud rate
+        //Init Serial port with 9600 baud rate
         Serial.begin(9600);
 
         //Setup Encoders
-        //SetupEncoders();
+        SetupEncoders();
 
         //Setup Motors
         SetupMotors();
@@ -180,13 +170,13 @@ void SetupMotors()
 {
 
         //Left motor
-        pinMode(PWM_E1,OUTPUT);
-        pinMode(PWM_E2,OUTPUT);
+        pinMode(PWM_FRENTE_E,OUTPUT);
+        pinMode(PWM_TRAS_E,OUTPUT);
 
 
         //Right Motor
-        pinMode(PWM_D9,OUTPUT);
-        pinMode(PWM_D10,OUTPUT);
+        pinMode(PWM_FRENTE_D,OUTPUT);
+        pinMode(PWM_TRAS_D,OUTPUT);
 
 }
 
@@ -232,7 +222,7 @@ void ToQuaternion(float yaw, float pitch, float roll) // yaw (Z), pitch (Y), rol
 //do_Left_Encoder() Definitions
 void do_Left_Encoder()
 {
-       // (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks-- : Left_Encoder_Ticks++;
+        (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks-- : Left_Encoder_Ticks++;
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,20 +230,20 @@ void do_Left_Encoder()
 
 void do_Right_Encoder()
 {
-       // (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks++ : Right_Encoder_Ticks--;
+       (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks++ : Right_Encoder_Ticks--;
 }
 
 //Will update both encoder value through serial port
 void Update_Encoders()
 {
-/*
+
         Serial.print("e");
         Serial.print("\t");
         Serial.print(Left_Encoder_Ticks);
         Serial.print("\t");
         Serial.print(Right_Encoder_Ticks);
         Serial.print("\n");
-        */
+
 }
 void loop()
 {
@@ -265,7 +255,7 @@ void loop()
         Update_Time();
 
         //Send encoders values through serial port
-        //Update_Encoders();
+        Update_Encoders();
 
         //Update motor values with corresponding speed and send speed values through serial port
         Update_Motors();
@@ -334,13 +324,10 @@ void Reset()
         motor_left_speed = 0;
         motor_right_speed = 0;
         //Zera os encoders
-       /* Left_Encoder_Ticks = 0;
+        Left_Encoder_Ticks = 0;
         Right_Encoder_Ticks = 0;
 
-        digitalWrite(GREEN_LED,HIGH);
-        delay(1000);
-        digitalWrite(GREEN_LED,LOW);
-        */
+        delay(1000);        
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -413,8 +400,8 @@ void moveRightMotor(float rightServoValue)
                 {
                         rightServoValue = limite;
                 }
-                analogWrite(PWM_D9,rightServoValue);
-                analogWrite(PWM_D10,0);
+                analogWrite(PWM_FRENTE_D,rightServoValue);
+                analogWrite(PWM_TRAS_D,0);
         }
         else if(rightServoValue<0)
         {
@@ -423,16 +410,16 @@ void moveRightMotor(float rightServoValue)
                 {
                         rightServoValue = limite;
                 }
-                analogWrite(PWM_D10,abs(rightServoValue));
-                analogWrite(PWM_D9,0);
+                analogWrite(PWM_TRAS_D,abs(rightServoValue));
+                analogWrite(PWM_FRENTE_D,0);
         }
 
         else if(rightServoValue == 0)
         {
                 //reset PIN , mas esse desliga o TIVA
                 //digitalWrite(Direita_d,LOW);
-                analogWrite(PWM_D9, 0);
-                analogWrite(PWM_D10, 0);
+                analogWrite(PWM_FRENTE_D, 0);
+                analogWrite(PWM_TRAS_D, 0);
         }
 
 
@@ -448,8 +435,8 @@ void moveLeftMotor(float leftServoValue)
                 {
                         leftServoValue = limite;
                 }
-                analogWrite(PWM_E2,leftServoValue);
-                analogWrite(PWM_E1,0);
+                analogWrite(PWM_TRAS_E,leftServoValue);
+                analogWrite(PWM_FRENTE_E,0);
 
         }
         else if(leftServoValue < 0)
@@ -459,16 +446,16 @@ void moveLeftMotor(float leftServoValue)
                 {
                         leftServoValue = limite;
                 }
-                analogWrite(PWM_E1,abs(leftServoValue));
-                analogWrite(PWM_E2,0);
+                analogWrite(PWM_FRENTE_E,abs(leftServoValue));
+                analogWrite(PWM_TRAS_E,0);
 
         }
         else if(leftServoValue == 0)
         {
                 //reset PIN , mas esse desliga o TIVA
                 //digitalWrite(Esquerda_d,LOW);
-                analogWrite(PWM_E1,0);
-                analogWrite(PWM_E2,0);
+                analogWrite(PWM_FRENTE_E,0);
+                analogWrite(PWM_TRAS_E,0);
         }
 
 
