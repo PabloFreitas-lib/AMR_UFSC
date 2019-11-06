@@ -91,14 +91,14 @@ int PWM_TRAS_D = 10; // Para tras
 
 // Left encoder 5V( preto GND - Vermelho VCC)
 
-#define Left_Encoder_PinA 15 // branco
+#define Left_Encoder_PinA 2// branco
 #define Left_Encoder_PinB 16 // verde
 
 volatile long Left_Encoder_Ticks = 0;
 
 // Right encoder 5V( preto GND - Vermelho VCC)
 
-#define Right_Encoder_PinA 7 // branco
+#define Right_Encoder_PinA 3 // branco
 #define Right_Encoder_PinB 8 // verde
 
 volatile long Right_Encoder_Ticks = 0;
@@ -130,8 +130,8 @@ void SetupEncoders()
         pinMode(Right_Encoder_PinA,INPUT_PULLUP);
         pinMode(Right_Encoder_PinB,INPUT_PULLUP);
 
-        attachInterrupt(Left_Encoder_PinA, do_Left_Encoder, RISING);
-        attachInterrupt(Right_Encoder_PinA, do_Right_Encoder, RISING);
+        attachInterrupt(digitalPinToInterrupt(Left_Encoder_PinA), do_Left_Encoder, RISING);
+        attachInterrupt(digitalPinToInterrupt(Right_Encoder_PinA), do_Right_Encoder, RISING);
 }
 int a=0,b=0;
 
@@ -139,7 +139,7 @@ void setup()
 {
 
         //Init Serial port with 9600 baud rate
-        Serial.begin(9600);
+        Serial.begin(115200);
 
         //Setup Encoders
         SetupEncoders();
@@ -151,7 +151,7 @@ void setup()
         //SetupUltrasonic();
 
         //Setup MPU 6050
-        //Setup_MPU6050();
+//        Setup_MPU6050();
 
         //Setup Reset pins
         //SetupReset();
@@ -222,15 +222,14 @@ void ToQuaternion(float yaw, float pitch, float roll) // yaw (Z), pitch (Y), rol
 //do_Left_Encoder() Definitions
 void do_Left_Encoder()
 {
-        (digitalRead(Left_Encoder_PinB)==LOW) ? Left_Encoder_Ticks-- : Left_Encoder_Ticks++;
-
+        (digitalRead(Left_Encoder_PinB)==HIGH) ? Left_Encoder_Ticks-- : Left_Encoder_Ticks++;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //do_Right_Encoder() Definitions
 
 void do_Right_Encoder()
 {
-       (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks++ : Right_Encoder_Ticks--;
+       (digitalRead(Right_Encoder_PinB)==HIGH) ? Right_Encoder_Ticks-- : Right_Encoder_Ticks++;
 }
 
 //Will update both encoder value through serial port
@@ -264,7 +263,7 @@ void loop()
         //Update_Ultra_Sonic();
 
         //Send MPU 6050 values through serial port
-        //Update_MPU6050();
+  //      Update_MPU6050();
 
 }
 
@@ -324,8 +323,8 @@ void Reset()
         motor_left_speed = 0;
         motor_right_speed = 0;
         //Zera os encoders
-        Left_Encoder_Ticks = 0;
-        Right_Encoder_Ticks = 0;
+        //Left_Encoder_Ticks = 0;
+        //Right_Encoder_Ticks = 0;
 
         delay(1000);        
 }
