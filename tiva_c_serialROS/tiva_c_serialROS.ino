@@ -67,8 +67,8 @@ unsigned const int limite = 155;
 
 // Motor DIREITA - LevelUP da ESQUERDA
 
-int PWM_D1 = PC_5; //PWM1 - PH4
-int PWM_D2 = PC_6; //PWM2 - PH3
+int PWM_D1 = PB_0;  //PWM1 - PH4
+int PWM_D2 = PB_1;  //PWM2 - PH3
 
 int Direita_d = PA_3; // Sinal de 5v para as duas entradas encoder - PH1
 
@@ -76,8 +76,8 @@ int Direita_d = PA_3; // Sinal de 5v para as duas entradas encoder - PH1
 
 // Motor ESQUERDA - LevelUP do Meio
 
-int PWM_E1 = PB_0; //PWM1 - PH1
-int PWM_E2 = PB_1; //PWM2 - PH2
+int PWM_E1 = PC_6;  //PWM1 - PH1
+int PWM_E2 = PC_5;  //PWM2 - PH2
 
 int Esquerda_d = PE_4; //sinal de 5v para as duas entradas encoder - PH3
 
@@ -86,16 +86,16 @@ int Esquerda_d = PE_4; //sinal de 5v para as duas entradas encoder - PH3
 //Encoder pins definition
 
 // Left encoder 5V( preto GND - Vermelho VCC)
-
-#define Left_Encoder_PinA PD_6 // branco
-#define Left_Encoder_PinB PC_7 // verde
+  
+#define Left_Encoder_PinA PD_7   // branco
+#define Left_Encoder_PinB PF_4  // verde
 
 volatile long Left_Encoder_Ticks = 0;
 
 // Right encoder 5V( preto GND - Vermelho VCC)
 
-#define Right_Encoder_PinA PF_4 // branco
-#define Right_Encoder_PinB PD_7 // verde
+#define Right_Encoder_PinA PD_6  // branco
+#define Right_Encoder_PinB PC_7  // verde
 
 volatile long Right_Encoder_Ticks = 0;
 
@@ -237,7 +237,7 @@ void do_Left_Encoder()
 
 void do_Right_Encoder()
 {
-        (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks++ : Right_Encoder_Ticks--;
+        (digitalRead(Right_Encoder_PinB)==LOW) ? Right_Encoder_Ticks-- : Right_Encoder_Ticks++;
 }
 
 //Will update both encoder value through serial port
@@ -579,5 +579,3 @@ void calculate_IMU_error() {
   Serial.print("GyroErrorZ: ");
   Serial.println(GyroErrorZ);
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

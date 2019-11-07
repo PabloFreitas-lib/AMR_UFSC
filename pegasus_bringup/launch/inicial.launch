@@ -14,9 +14,9 @@
 	<rosparam param="base_width">0.45</rosparam>
 	<rosparam param="ticks_meter">752</rosparam>
 
-	<!-- <rosparam param="cmd_vel_topic">"cmd_vel_mux/input/teleop"</rosparam> -->
+	<rosparam param="cmd_vel_topic">"cmd_vel_mux/input/teleop"</rosparam>
 	<!-- Tirar o comentario se for para teleoperação(teleop) -->
-	<rosparam param="cmd_vel_topic">"cmd_vel_mux/input/navi"</rosparam>
+	<!-- <rosparam param="cmd_vel_topic">"cmd_vel_mux/input/navi"</rosparam> -->
 	<!-- Tirar o comentario se for para navegação -->
 
 	<!-- ########################################################################################################################### -->
