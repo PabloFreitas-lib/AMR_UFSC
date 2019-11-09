@@ -65,6 +65,28 @@ Por fim para salvar o mapa feito, onde o argumento ~/github_ws/src/AMR_UFSC/pega
 ```
 rosrun map_server map_saver -f ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2
 ```
+
+## Navegação
+
+
+Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros:
+```
+roslauch pegasus_bringup inicial.launch
+```
+
+Ativando o lidar
+```
+roslaunch pegasus_bringup lidar.launch
+```
+Carrega o mapa que o robô precisará navegar:
+```
+roslaunch pegasus_bringup amcl_demo.launch 
+```
+Abrir um arquivo Rviz para vizualiação da navegação:
+```
+roslaunch pegasus_bringup mobot_rviz_navegacao.launch
+```
+
 ### Testes
 
 Explain what these tests test and why
