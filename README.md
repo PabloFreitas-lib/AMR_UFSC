@@ -5,7 +5,7 @@
 Protótipo de veiculo autonomono  no LSE UFSC Joinville.
 
 
-### Prerequisites
+### Pré-requisito
 
 Precisa ter instalado no pc:
 
