@@ -115,6 +115,7 @@ Link para a documentação: https://drive.google.com/open?id=1Uiy5zNxnDLPrxDTVcy
 -   **André**
 -   **Jean**
 -   **Lígia**
+-   **Lucas Dallamico**
 -   **Pablo Freitas Santos** - _Acesso ao Git_ - [PabloFreitasUfsc](https://github.com/PabloFreitasUfsc)
 
 
