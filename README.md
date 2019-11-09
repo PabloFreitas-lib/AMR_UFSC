@@ -38,6 +38,27 @@ catkin build
 ```
 Feche o terminal e abra um novo toda vez que recompilar os códigos.
 
+Por fim no RPI, entre na area de trabalho do ros (github_ws):
+```
+cd github_ws/src/
+```
+
+Baixe a ultima versão do código fonte:
+```
+git clone https://github.com/PabloFreitasUfsc/AMR_UFSC
+```
+
+Volte um diretório e limpe o workspace:
+```
+cd .. && catkin clean -y
+
+```
+ Re-construa o espaço:
+```
+catkin_make -j2
+```
+Feche o terminal e abra um novo toda vez que recompilar os códigos.
+
 
 ## Controle pelo teclado
 
