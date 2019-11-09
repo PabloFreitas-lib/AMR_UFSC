@@ -14,30 +14,15 @@ Ubuntu 18.04, ssh ativado, ros melodic, ros workspace ( https://catkin-tools.rea
 Raspberry com Ubuntu Mate 18.04 (https://ubuntu-mate.org/download/), ros workspace ( usado o catkin_make por ser um ambiente com processamento limitado), vesao limita do ros melodic 18.04, nao é preciso instalar tudo, vou listar todos os pacotes necessarios.
 
 Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://energia.nu/) baixados.
-```
-Give examples
-```
 
 ### Instalação
 
-A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
 
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Executando Programas
-Entre no area de trabalho do ros (github_ws)
+Entre no area de trabalho do ros (github_ws), limpe o workspace, re-construa o espaço:
 ```
 cd github_ws/
 
@@ -52,11 +37,11 @@ Controle pelo teclado
 
 Terminal 1:
 
-Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros.
+Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros:
 ```
 roslauch pegasus_bringup inicial.launch
 ```
-Comunicação entre o teclado e as mensagens enviadar para o motor.
+Comunicação entre o teclado e as mensagens enviadar para o motor:
 ```
 roslaunch pegasus_bringup keyboard_teleop.launch 
 ```
