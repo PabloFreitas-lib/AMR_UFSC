@@ -17,12 +17,10 @@ Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://e
 
 ### Instalação
 
-
-
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Executando Programas
-Entre no area de trabalho do ros (github_ws), limpe o workspace, re-construa o espaço:
+Entre na area de trabalho do ros (github_ws), limpe o workspace, re-construa o espaço:
 ```
 cd github_ws/
 
@@ -32,21 +30,36 @@ catkin build
 ```
 Feche o terminal e abra um novo.
 
-
-Controle pelo teclado
-
-Terminal 1:
-
 Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros:
 ```
 roslauch pegasus_bringup inicial.launch
 ```
+
+Controle pelo teclado
+
 Comunicação entre o teclado e as mensagens enviadar para o motor:
 ```
 roslaunch pegasus_bringup keyboard_teleop.launch 
 ```
+Mapeamento
 
+Ativando o lidar
+```
+roslaunch pegasus_bringup lidar.launch
+```
+Carregando o algoritmo SLAM ( Simultaneas Localization and Mapping), nesse caso sera usado o gmapping:
 
+```
+roslaunch pegasus_bringup mapeamento_demo.launch 
+```
+Abrir um arquivo Rviz para vizualiação da criação do mapa:
+```
+roslaunch pegasus_bringup mobot_rviz_navegacao.launch
+```
+Por fim para salvar o mapa feito, onde o argumento ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2 pode ser trocado pelo diretório e nome do arquivo que queira salvar:
+```
+rosrun map_server map_saver -f ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2
+```
 ### Testes
 
 Explain what these tests test and why
@@ -65,24 +78,7 @@ Give an example
 
 ## Notas de Desenvolvimento
 
-Link para o relatório: https://drive.google.com/open?id=1Uiy5zNxnDLPrxDTVcyMnjF-LcmeB3GVd0uSXu1x8qcg
-## Built With
-
-* [Contributor Covenant](https://www.contributor-covenant.org/) - Used for the Code of Conduct
-* [Creative Commons](https://creativecommons.org/) - Used to choose the license
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
-
-
-## License
-
-This project is licensed under the [Attribution 4.0 International](LICENSE.md) Creative Commons License - see the [LICENSE.md](LICENSE.md) file for details
+Link para a documentação: https://drive.google.com/open?id=1Uiy5zNxnDLPrxDTVcyMnjF-LcmeB3GVd0uSXu1x8qcg
 
 
 
@@ -98,3 +94,4 @@ This project is licensed under the [Attribution 4.0 International](LICENSE.md) C
 ## Acknowledgments
 
 -   <https://github.com/PurpleBooth>
+-    https://catkin-tools.readthedocs.io/en/latest/#
