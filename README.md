@@ -19,7 +19,7 @@ Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://e
 
 Primeiramento no pc(monitorador), entre na area de trabalho do ros (github_ws):
 ```
-cd github_ws/
+cd github_ws/src/
 ```
 
 Baixe a ultima versão do código fonte:
@@ -27,9 +27,9 @@ Baixe a ultima versão do código fonte:
 git clone https://github.com/PabloFreitasUfsc/AMR_UFSC
 ```
 
-Limpe o workspace:
+Volte um diretório e limpe o workspace:
 ```
-catkin clean -y
+cd .. && catkin clean -y
 
 ```
  Re-construa o espaço:
