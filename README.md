@@ -51,11 +51,14 @@ Feche o terminal e abra um novo.
 Controle pelo teclado
 
 Terminal 1:
+
+Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros.
 ```
 roslauch pegasus_bringup inicial.launch
-
+```
+Comunicação entre o teclado e as mensagens enviadar para o motor.
+```
 roslaunch pegasus_bringup keyboard_teleop.launch 
-
 ```
 
 
