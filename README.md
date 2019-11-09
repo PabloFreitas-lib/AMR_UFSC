@@ -65,8 +65,7 @@ Give an example
 
 ## Notas de Desenvolvimento
 
-Add additional notes about how to deploy this on a live system
-
+Link para o relatório: https://drive.google.com/open?id=1Uiy5zNxnDLPrxDTVcyMnjF-LcmeB3GVd0uSXu1x8qcg
 ## Built With
 
 * [Contributor Covenant](https://www.contributor-covenant.org/) - Used for the Code of Conduct
