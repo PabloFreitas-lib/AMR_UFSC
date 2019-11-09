@@ -1,10 +1,8 @@
 # Implementação de Veículo de Carga Autônomo
 
-Modificar
-
 ## Introdução
 
-
+Protótipo de veiculo autonomono  no LSE UFSC Joinville.
 
 
 ### Prerequisites
