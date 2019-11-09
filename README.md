@@ -15,7 +15,7 @@ Raspberry com Ubuntu Mate 18.04 (https://ubuntu-mate.org/download/), ros workspa
 
 Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://energia.nu/) baixados.
 
-### Instalação
+### Instalação códigos fonte no PC (monitorador)
 
 Primeiramento no pc(monitorador), entre na area de trabalho do ros (github_ws):
 ```
@@ -37,6 +37,8 @@ cd .. && catkin clean -y
 catkin build
 ```
 Feche o terminal e abra um novo toda vez que recompilar os códigos.
+
+### Instalação códigos fonte no RPI
 
 Por fim no RPI, entre na area de trabalho do ros (github_ws):
 ```
