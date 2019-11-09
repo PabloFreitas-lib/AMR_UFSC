@@ -5,7 +5,7 @@
 Protótipo de veiculo autonomono  no LSE UFSC Joinville.
 
 
-### Pré-requisito
+### Pré-requisitos
 
 Precisa ter instalado no pc:
 
@@ -18,7 +18,7 @@ Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://e
 Give examples
 ```
 
-### Installing
+### Instalação
 
 A step by step series of examples that tell you how to get a development env running
 
@@ -40,7 +40,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 
 
-### Break down into end to end tests
+### Testes
 
 Explain what these tests test and why
 
@@ -56,7 +56,7 @@ Explain what these tests test and why
 Give an example
 ```
 
-## Deployment
+## Notas de Desenvolvimento
 
 Add additional notes about how to deploy this on a live system
 
