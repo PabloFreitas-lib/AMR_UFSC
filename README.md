@@ -7,8 +7,13 @@ Protótipo de veiculo autonomono  no LSE UFSC Joinville.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Precisa ter instalado no pc:
 
+Ubuntu 18.04, ssh ativado, ros melodic, ros workspace ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do ros ( ainda serao listados).
+
+Raspberry com Ubuntu Mate 18.04 (https://ubuntu-mate.org/download/), ros workspace ( usado o catkin_make por ser um ambiente com processamento limitado), vesao limita do ros melodic 18.04, nao é preciso instalar tudo, vou listar todos os pacotes necessarios.
+
+Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://energia.nu/) baixados.
 ```
 Give examples
 ```
