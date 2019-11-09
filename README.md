@@ -28,20 +28,25 @@ catkin clean -y
 
 catkin build
 ```
-Feche o terminal e abra um novo.
+Feche o terminal e abra um novo toda vez que recompilar os códigos.
+
+## Controle pelo teclado
 
 Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros:
 ```
 roslauch pegasus_bringup inicial.launch
 ```
 
-Controle pelo teclado
-
 Comunicação entre o teclado e as mensagens enviadar para o motor:
 ```
 roslaunch pegasus_bringup keyboard_teleop.launch 
 ```
-Mapeamento
+## Mapeamento
+
+Inicializa o microcontrolador e os sensores(imu,encoders,ponte-h) no ros:
+```
+roslauch pegasus_bringup inicial.launch
+```
 
 Ativando o lidar
 ```
