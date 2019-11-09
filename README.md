@@ -37,7 +37,26 @@ until finished
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Executando Programas
+Entre no area de trabalho do ros (github_ws)
+```
+cd github_ws/
 
+catkin clean -y
+
+catkin build
+```
+Feche o terminal e abra um novo.
+
+
+Controle pelo teclado
+
+Terminal 1:
+```
+roslauch pegasus_bringup inicial.launch
+
+roslaunch pegasus_bringup keyboard_teleop.launch 
+
+```
 
 
 ### Testes
