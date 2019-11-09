@@ -96,21 +96,6 @@ Abrir um arquivo Rviz para vizualiação da navegação:
 roslaunch pegasus_bringup mobot_rviz_navegacao.launch
 ```
 
-### Testes
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Notas de Desenvolvimento
 
