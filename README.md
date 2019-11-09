@@ -17,18 +17,27 @@ Ter o arduino-ide (https://www.arduino.cc/en/main/software) e energia (https://e
 
 ### Instalação
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Executando Programas
-Entre na area de trabalho do ros (github_ws), limpe o workspace, re-construa o espaço:
+Primeiramento no pc(monitorador), entre na area de trabalho do ros (github_ws):
 ```
 cd github_ws/
+```
 
+Baixe a ultima versão do código fonte:
+```
+git clone https://github.com/PabloFreitasUfsc/AMR_UFSC
+```
+
+Limpe o workspace:
+```
 catkin clean -y
 
+```
+ Re-construa o espaço:
+```
 catkin build
 ```
 Feche o terminal e abra um novo toda vez que recompilar os códigos.
+
 
 ## Controle pelo teclado
 
