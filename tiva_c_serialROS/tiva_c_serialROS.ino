@@ -515,12 +515,12 @@ void Update_MPU6050()
 
         ToQuaternion(yaw, pitch, roll);
 
-        Serial.print("i"); Serial.print("\t");
+        /*Serial.print("i"); Serial.print("\t");
          Serial.print(q.x); Serial.print("\t");
          Serial.print(q.y); Serial.print("\t");
          Serial.print(q.z); Serial.print("\t");
          Serial.print(q.w);
-         Serial.print("\n");
+         Serial.print("\n");*/
 
 
 
