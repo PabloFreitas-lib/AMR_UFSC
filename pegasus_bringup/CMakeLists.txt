@@ -110,9 +110,9 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-add_executable(send_goal src/send_robot_goal.cpp)
+#add_executable(send_goal src/send_robot_goal.cpp)
 add_executable(twist_to_motors src/twist_to_motors.cpp)
-add_executable(diff_tf src/diff_tf.cpp)
+#add_executable(diff_tf src/diff_tf.cpp)
 
 
 ## Add cmake target dependencies of the executable/library
@@ -120,16 +120,16 @@ add_executable(diff_tf src/diff_tf.cpp)
 # add_dependencies(pegasus_bringup_node pegasus_bringup_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(send_goal
-   ${catkin_LIBRARIES}
- )
+# target_link_libraries(send_goal
+#   ${catkin_LIBRARIES}
+ #)
  target_link_libraries(twist_to_motors
    ${catkin_LIBRARIES}
  )
 
- target_link_libraries(diff_tf
-   ${catkin_LIBRARIES}
- )
+# target_link_libraries(diff_tf
+#   ${catkin_LIBRARIES}
+#)
 
 #############
 ## Install ##
