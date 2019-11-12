@@ -151,7 +151,7 @@ void setup()
         //SetupUltrasonic();
 
         //Setup MPU 6050
-        Setup_MPU6050();
+        //Setup_MPU6050();
 
         //Setup Reset pins
         //SetupReset();
@@ -270,7 +270,7 @@ void loop()
         //Update_Ultra_Sonic();
 
         //Send MPU 6050 values through serial port
-        Update_MPU6050();
+        //Update_MPU6050();
 
 }
 
@@ -515,14 +515,12 @@ void Update_MPU6050()
 
         ToQuaternion(yaw, pitch, roll);
 
-        /*Serial.print("i"); Serial.print("\t");
+        Serial.print("i"); Serial.print("\t");
          Serial.print(q.x); Serial.print("\t");
          Serial.print(q.y); Serial.print("\t");
          Serial.print(q.z); Serial.print("\t");
          Serial.print(q.w);
-         Serial.print("\n");*/
-
-
+         Serial.print("\n");
 
 }
 
