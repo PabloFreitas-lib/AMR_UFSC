@@ -151,7 +151,7 @@ void setup()
         //SetupUltrasonic();
 
         //Setup MPU 6050
-//        Setup_MPU6050();
+        Setup_MPU6050();
 
         //Setup Reset pins
         //SetupReset();
@@ -263,7 +263,7 @@ void loop()
         //Update_Ultra_Sonic();
 
         //Send MPU 6050 values through serial port
-  //      Update_MPU6050();
+        Update_MPU6050();
 
 }
 
@@ -326,7 +326,7 @@ void Reset()
         //Left_Encoder_Ticks = 0;
         //Right_Encoder_Ticks = 0;
 
-        delay(1000);        
+        delay(1000);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
