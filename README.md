@@ -4,21 +4,21 @@ Modificar
 
 ## Introdução
 
+Objetivo de construir um robô protótipo para cargas em locais fechados como armazens.
 
 
-
-### Prerequisites
+## Prerequisites
 
 Precisa ter instalado no pc:
 
 *Ubuntu 18.04*, *ssh* ativado, *ROS melodic*, *ROS workspace* ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do *ROS* **(ainda serão listados)**.
 
-*Raspberry* com *Ubuntu Mate 18.04* (https://ubuntu-mate.org/download/), *ROS workspace* ( usado o *catkin_make* por ser um ambiente com processamento limitado), vesao limita do *ROS melodic 18.04*, não é preciso instalar tudo, vou listar todos os pacotes necessarios.
+*Raspberry* com *Ubuntu Mate 18.04* (https://ubuntu-mate.org/download/), *ROS workspace* ( usado o *catkin_make* por ser um ambiente com processamento limitado), vesão limita do *ROS melodic 18.04*, não é preciso instalar tudo, vou listar todos os pacotes necessarios.
 
 Ter o *arduino-ide* (https://www.arduino.cc/en/main/software) e energia (https://energia.nu/) baixados.
 
 
-### Instalação códigos fonte no PC (monitorador)
+# Instalação códigos fonte no PC (monitorador)
 
 
 Primeiramento no pc(monitorador), entre na área de trabalho do *ROS (github_ws)*:
@@ -52,7 +52,7 @@ catkin build
 
 
 
-## Instalação códigos fonte no RPI
+# Instalação códigos fonte no RPI
 
 Por fim no *RPI*, entre na area de trabalho do *ROS (github_ws)*:
 
@@ -80,7 +80,7 @@ catkin_make -j2
 **Feche o terminal e abra um novo toda vez que recompilar os códigos.**
 
 
-### Verificando o funcionamento do microcontrolador
+# Verificando o funcionamento do microcontrolador
 
 Após carregar o código no *microcontrolador(uC)*, podendo ser o **Arduino nano** ou **Tiva C**, possuindo pastas especificas para cada um. Abra um terminal e execute o comando abaixo para visualizar a resposta serial:
 
@@ -106,7 +106,7 @@ Mandar mensagem para os motores:
 
 
 
-### Controle pelo teclado
+# Controle pelo teclado
 
 
 Inicializa o microcontrolador e os sensores*(imu,encoders,ponte-h)* no *ROS*:
@@ -122,7 +122,7 @@ Comunicação entre o teclado e as mensagens enviadar para o motor:
 roslaunch pegasus_bringup keyboard_teleop.launch
 ```
 
-### Mapeamento
+# Mapeamento
 
 
 Inicializa o microcontrolador e os sensores*(imu,encoders,ponte-h)* no *ROS*:
@@ -163,7 +163,7 @@ Por fim para salvar o mapa feito, onde o argumento ~/github_ws/src/AMR_UFSC/pega
 rosrun map_server map_saver -f ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2
 ```
 
-### Navegação
+# Navegação
 
 
 Inicializa o microcontrolador e os sensores*(imu,encoders,ponte-h)* no *ROS*:
@@ -190,9 +190,10 @@ Abrir um arquivo *Rviz* para vizualiação da criação do mapa:
 roslaunch pegasus_bringup mobot_rviz_navegacao.launch
 ```
 
-### Notas de Desenvolvimento
+## Notas de Desenvolvimento
 
-Link para a documentação: https://drive.google.com/open?id=1Uiy5zNxnDLPrxDTVcyMnjF-LcmeB3GVd0uSXu1x8qcg
+Link para a documentação:
+<https://drive.google.com/open?id=1Uiy5zNxnDLPrxDTVcyMnjF-LcmeB3GVd0uSXu1x8qcg>
 
 
 
