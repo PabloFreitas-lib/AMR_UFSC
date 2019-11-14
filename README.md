@@ -11,7 +11,7 @@ Modificar
 
 Precisa ter instalado no pc:
 
-Ubuntu 18.04, ssh ativado, ROS melodic, ROS workspace ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do ROS ( ainda serao listados).
+*Ubuntu* 18.04, ssh ativado, ROS melodic, ROS workspace ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do ROS ( ainda serao listados).
 
 Raspberry com Ubuntu Mate 18.04 (https://ubuntu-mate.org/download/), ROS workspace ( usado o catkin_make por ser um ambiente com processamento limitado), vesao limita do ROS melodic 18.04, não é preciso instalar tudo, vou listar todos os pacotes necessarios.
 
@@ -84,7 +84,7 @@ Feche o terminal e abra um novo toda vez que recompilar os códigos.
 
 Após carregar o código no microcontrolador(uC), podendo ser o Arduino nano ou Tiva C, possuindo pastas especificas para cada um. Abra um terminal e execute o comando abaixo para visualizar a resposta serial:
 
-Obs: Se somente tiver um uC conectado no computador, utilizar o completa automático ( usar o atalho do tab) a partir do ...ACM para descobrir qual porta o uC se encontra.
+Obs: Se somente tiver um *uC* conectado no computador, utilizar o completa automático ( usar o atalho do tab) a partir do ...ACM para descobrir qual porta o uC se encontra.
 
 ```
 miniterm /dev/ttyACM0 115200
@@ -94,6 +94,7 @@ TODO, colocar uma IMAGEM da saida
 Na documentação explicarei mais detalhadamente.
 
 Logo em seguida é possivel testar os comandos de entrada:
+
 
 Reset do microcontrolador:
 
