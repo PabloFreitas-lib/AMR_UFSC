@@ -1,6 +1,6 @@
 # Implementação de Veículo de Carga Autônomo
 
-Modificar
+**Ainda em contrução**
 
 ## Introdução
 
@@ -89,7 +89,7 @@ Após carregar o código no *microcontrolador(uC)*, podendo ser o **Arduino nano
 ```bash
 miniterm /dev/ttyACM0 115200
 ```
-**TODO, colocar uma IMAGEM da saida**
+**TODO, colocar uma IMAGEM da saída**
 
 Na documentação explicarei mais detalhadamente.
 
