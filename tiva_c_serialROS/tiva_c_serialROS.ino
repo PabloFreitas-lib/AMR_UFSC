@@ -59,7 +59,7 @@ Quaternion q;
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned const int limite = 155;
+unsigned const int limite = 80;
 
 //Codigo novo adaptado para novo esquematico
 
@@ -86,7 +86,7 @@ int Esquerda_d = PE_4; //sinal de 5v para as duas entradas encoder - PH3
 //Encoder pins definition
 
 // Left encoder 5V( preto GND - Vermelho VCC)
-  
+
 #define Left_Encoder_PinA PD_7   // branco
 #define Left_Encoder_PinB PF_4  // verde
 
