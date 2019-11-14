@@ -31,18 +31,18 @@ cd github_ws/src/
 Baixe a ultima versão do código fonte:
 
 
-```
+```bash
 git clone https://github.com/PabloFreitasUfsc/AMR_UFSC
 ```
 
 Volte um diretório e limpe a área de trablho:
 
-```
+```bash
 cd .. && catkin clean -y
 ```
 Re-construa o espaço:
 
-```
+```bash
 catkin build
 ```
 **Feche o terminal e abra um novo toda vez que recompilar os códigos.**
@@ -56,25 +56,25 @@ catkin build
 
 Por fim no *RPI*, entre na area de trabalho do *ROS (github_ws)*:
 
-```
+```bash
 cd github_ws/src/
 ```
 Baixe a ultima versão do código fonte:
 
-```
+```bash
 git clone https://github.com/PabloFreitasUfsc/AMR_UFSC
 ```
 Volte um diretório e limpe a área de trabalho:
 
 
-```
+```bash
 cd .. && catkin clean -y
 ```
 Re-construa o espaço:
 
 
 
-```
+```bash
 catkin_make -j2
 ```
 **Feche o terminal e abra um novo toda vez que recompilar os códigos.**
@@ -86,7 +86,7 @@ Após carregar o código no *microcontrolador(uC)*, podendo ser o **Arduino nano
 
 **Obs: Se somente tiver um *uC* conectado no computador, utilizar o completa automático ( usar o atalho do tab) a partir do ...ACM para descobrir qual porta o uC se encontra.**
 
-```
+```bash
 miniterm /dev/ttyACM0 115200
 ```
 **TODO, colocar uma IMAGEM da saida**
@@ -112,13 +112,13 @@ Mandar mensagem para os motores:
 Inicializa o microcontrolador e os sensores*(imu,encoders,ponte-h)* no *ROS*:
 
 
-```
+```bash
 roslauch pegasus_bringup inicial.launch
 ```
 
 Comunicação entre o teclado e as mensagens enviadar para o motor:
 
-```
+```bash
 roslaunch pegasus_bringup keyboard_teleop.launch
 ```
 
@@ -129,37 +129,37 @@ Inicializa o microcontrolador e os sensores*(imu,encoders,ponte-h)* no *ROS*:
 
 **Obs:Como estamos trabalhando com mapeamento, deve-se verificar o parâmetro *cmd_vel_topic*, deve se possuir essa linha de comendo no arquivo *~/launch/inicial.launch*:**
 
-```
+```launch
 ...
 <rosparam param="cmd_vel_topic">"cmd_vel_mux/input/teleop"</rosparam>
 ...
 ```
 Se o parâmetro estiver correto prosiga com a execução em um terminal:
-```
+```bash
 roslauch pegasus_bringup inicial.launch
 ```
 
 Ativando o lidar
 
-```
+```bash
 roslauch pegasus_bringup lidar.launch
 ```
 
 Carregando o algoritmo SLAM ( Simultaneas Localization and Mapping), nesse caso sera usado o gmapping:
-```
+```bash
 roslaunch pegasus_bringup mapeamento_demo.launch
 
 ```
 Abrir um arquivo Rviz para vizualiação da criação do mapa:
 
-```
+```bash
 roslaunch pegasus_bringup mobot_rviz_navegacao.launch
 ```
 
 Por fim para salvar o mapa feito, onde o argumento ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2 pode ser trocado pelo diretório e nome do arquivo que queira salvar:
 
 
-```
+```bash
 rosrun map_server map_saver -f ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test_map2
 ```
 
@@ -168,25 +168,25 @@ rosrun map_server map_saver -f ~/github_ws/src/AMR_UFSC/pegasus_bringup/map/test
 
 Inicializa o microcontrolador e os sensores*(imu,encoders,ponte-h)* no *ROS*:
 
-```
+```bash
 roslauch pegasus_bringup inicial.launch
 ```
 
 Ativando o *lidar*:
 
-```
+```bash
 roslauch pegasus_bringup lidar.launch
 ```
 
 Carrega o mapa que o robô precisará navegar:
 
-```
+```bash
 roslaunch pegasus_bringup amcl_demo.launch
 
 ```
 Abrir um arquivo *Rviz* para vizualiação da criação do mapa:
 
-```
+```bash
 roslaunch pegasus_bringup mobot_rviz_navegacao.launch
 ```
 
