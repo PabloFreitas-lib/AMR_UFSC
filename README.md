@@ -24,7 +24,7 @@ Ter o *arduino-ide* (https://www.arduino.cc/en/main/software) e energia (https:/
 Primeiramento no pc(monitorador), entre na área de trabalho do *ROS (github_ws)*:
 
 
-```c++
+```bash
 cd github_ws/src/
 ```
 
