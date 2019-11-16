@@ -42,7 +42,7 @@
 	<node pkg="tf" type="static_transform_publisher" name="lidar_publisher" args="0 0 0 3.14159 0 0 base_link lidar 100" /> <!-- Código do Gunnar -->
 
 
-	<node name="launchpad_node" pkg="pegasus_bringup" type="launchpad_node.py">
+	<node name="launchpad_node" pkg="pegasus_bringup" type="launchpad_node.py" >
 		<rosparam file="$(find pegasus_bringup)/param/board_config.yaml" command="load"/>
 	</node>
 
