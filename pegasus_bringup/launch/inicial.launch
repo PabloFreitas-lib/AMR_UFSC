@@ -3,7 +3,7 @@
 
 	<!-- Argumentos e parametros -->
 
-	<arg name="urdf_file" default="$(find xacro)/xacro '$(find pegasus_description)/urdf/linobot.urdf'"/>
+	<arg name="urdf_file" default="$(find xacro)/xacro '$(find pegasus_description)/urdf/lino_robot.urdf'"/>
 
 	<arg name="scan_topic" default="scan"/>
 	<!-- Laserscan topic -->
@@ -77,6 +77,13 @@
 		<rosparam param="rolling_pts">5</rosparam>
 
 	</node>
+
+
+	<!-- Odom-IMU Extended Kalman Filter-->
+	<!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+			<remap from="odometry/filtered" to="odom" />
+			<rosparam command="load" file="$(find linorobot)/param/ekf/robot_localization.yaml" />
+	</node> -->
 
 	<!-- ########################################################################################################################### -->
 
