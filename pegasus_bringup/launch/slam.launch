@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <!-- Mapping package -->
     <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
