@@ -9,7 +9,7 @@ Objetivo de construir um robô protótipo para cargas em locais fechados como ar
 
 ## Pre-requisitos
 
-###Precisa ter instalado no pc:
+### Precisa ter instalado no pc:
 
 *Ubuntu 18.04*, *ssh* ativado, *ROS melodic*, *ROS workspace* ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do *ROS* **(ainda serão listados)**.
 
