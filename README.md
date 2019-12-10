@@ -77,6 +77,9 @@ Re-construa o espaço:
 ```bash
 catkin_make -j2
 ```
+
+Obs: Foi utilizado o comando -j2 para usar dois núcleos do raspberry pi, ele possui alguns problemas para compilar os códigos recomendo da uma lida sobre o swap do sistema operacional.
+
 **Feche o terminal e abra um novo toda vez que recompilar os códigos.**
 
 
