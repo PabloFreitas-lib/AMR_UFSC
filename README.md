@@ -11,9 +11,11 @@ Objetivo de construir um robô protótipo para cargas em locais fechados como ar
 
 ### Precisa ter instalado no pc:
 
-*Ubuntu 18.04*, *ssh* ativado, *ROS melodic*, *ROS workspace* ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do *ROS* **(ainda serão listados)**.
+*Ubuntu 18.04*, *ssh* ativado, *ROS melodic*, *ROS workspace* ( https://catkin-tools.readthedocs.io/en/latest/# ), alguns pacotes do *ROS* **(TODO listar os pacotes necessários para usar no apt-get install)**.
 
-*Raspberry* com *Ubuntu Mate 18.04* (https://ubuntu-mate.org/download/), *ROS workspace* ( usado o *catkin_make* por ser um ambiente com processamento limitado), vesão limita do *ROS melodic 18.04*, não é preciso instalar tudo, vou listar todos os pacotes necessarios.
+#### *Raspberry* com *Ubuntu Mate 18.04* (https://ubuntu-mate.org/download/)
+
+ *ROS workspace* ( usado o *catkin_make* por ser um ambiente com processamento limitado), vesão limita do *ROS melodic 18.04*, não é preciso instalar tudo, vou listar todos os pacotes necessarios.
 
 Ter o *arduino-ide* (https://www.arduino.cc/en/main/software) e energia (https://energia.nu/) baixados.
 
@@ -52,7 +54,7 @@ catkin build
 
 
 
-# Instalação códigos fonte no RPI
+# Instalação códigos fonte no Raspberry Pi (RPI)
 
 Por fim no *RPI*, entre na area de trabalho do *ROS (github_ws)*:
 
@@ -72,8 +74,6 @@ cd .. && catkin clean -y
 ```
 Re-construa o espaço:
 
-
-
 ```bash
 catkin_make -j2
 ```
@@ -82,7 +82,7 @@ catkin_make -j2
 
 # Verificando o funcionamento do microcontrolador
 
-Após carregar o código no *microcontrolador(uC)*, podendo ser o **Arduino nano** ou **Tiva C**, possuindo pastas especificas para cada um. Abra um terminal e execute o comando abaixo para visualizar a resposta serial:
+Após carregar o código no *microcontrolador(uC)*, podendo ser o **Arduino nano** ou **Tiva C**, possuindo pastas especificas para cada um ( **~/github_ws/src/AMR_UFSC/closed_loop**). Abra um terminal e execute o comando abaixo para visualizar a resposta serial:
 
 **Obs: Se somente tiver um *uC* conectado no computador, utilizar o completa automático ( usar o atalho do tab) a partir do ...ACM para descobrir qual porta o uC se encontra.**
 
